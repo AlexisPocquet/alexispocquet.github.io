@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ]
+        });
+      });
+    </script>
+    <title>Alexis Pocquet</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <header class="banner">
+    <img src="./pics/ceiling_santa_caterina_napoli.jpg" alt="Toit de la chapelle de Santa Caterina, Naples."/>
+    <div class="banner-text">
+      <h1>Alexis Pocquet</h1>
+    </div>
+  </header>
+
+  <body>
+    <nav class="nav-buttons">
+      <a href="./index.html" class="button">Main</a>
+      <a href="./about.html" class="button">About</a>
+      <a href="./contact.html" class="button">Contacts</a>
+    </nav>
+
+    <p class="intro">
+      I am pursuing the <i>Master Parisien de Recherche en Informatique (MPRI)</i>, with a primary interest
+      in type theory and higher category theory. More generally, I like to learn and play with mathematical
+      structures through the lense of theoretical computer science and I also enjoy programming langage
+      theory.
+    </p>
+
+    <h3 class="point">Curriculum</h3>
+    <div class="cv-section">
+      <div class="cv-item">
+        <div class="cv-date">2025 — now</div>
+        <div class="cv-content">
+          <span class="cv-title">MSc in Theoretical Computer Science</span>
+          <span class="cv-details">Master Parisien de recherche en Informatique (MPRI)</span>
+          <span class="cv-institution">Institut Polytechnique de Paris, École Polytechnique, Palaiseau</span>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2024 — 2025</div>
+        <div class="cv-content">
+          <span class="cv-title">BSc in Computer Science and Mathematics</span>
+          <span class="cv-details">Research Track / Magistère d'Informatique - Cum Laude</span>
+          <span class="cv-institution">Université Paris-Saclay, Orsay</span>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2022 — 2024</div>
+        <div class="cv-content">
+          <span class="cv-title">Classe Préparatoire aux Grandes Écoles (CPGE)</span>
+          <span class="cv-details">Intensive program in Mathematics, Physics, and CS (MPI)</span>
+          <span class="cv-institution">Lycée Henri Wallon, Valenciennes</span>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2022</div>
+        <div class="cv-content">
+          <span class="cv-title">Baccalauréat Général</span>
+          <span class="cv-details">Spec. Mathematics and Computer Science — Summa Cum Laude</span>
+          <span class="cv-institution">Lycée Pasteur, Hénin-Beaumont</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="point">Research Experience</h3>
+
+    <ul>
+      <li>
+        <div class="research-header">
+          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">M1 Research Internship</a>
+          <span class="research-meta">Université Paris-Saclay, LMF, Deducteam team · Thibaut Benjamin · march 2026 to july 2026</span>
+        </div>
+        <p class="research-body">
+          Weak ω-categories are higher-dimensional algebraic structures generalizing the geometry of types in
+          intentional type theory, and are a leading candidate for representing homotopy types — though many
+          constructions within this representation remain poorly understood. The goal of this internship is to
+          extend a type-theoretical presentation of weak ω-categories with parametricity axioms, corresponding
+          to a class of cylinder construction operations.
+        </p>
+      </li>
+
+      <li>
+        <div class="research-header">
+          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">Bachelor Research Internship</a>
+          <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret and Jérôme Boillot · may 2025 to july 2025</span>
+        </div>
+        <p class="research-body">
+          During my first internship with the Antique team at ENS Paris, under the supervision of
+          Jérôme Féret and Jérôme Boillot, I discovered Abstract Interpretation and its application
+          to operating system formal verification.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            In this work, I proposed a method to verify that operating system properties are preserved during
+            the execution of application tasks on the IA-32 architecture by introducing an intermediate language
+            with a formal semantics to model assembly instructions. From this, I derived a semantics
+            characterizing all states reachable during task execution and constructed a sound and sufficiently
+            precise over-approximation of reachability analysis based on constraint-manipulating functions over
+            memory states. This approach makes it possible to compute memory states corresponding to writes in
+            critical regions, and I defined a set of states that I proved to be stable under this abstract
+            analysis, provided that application executions do not compromise the integrity of the host system's
+            essential data structures.
+          </span>
+        </p>
+      </li>
+
+      <li>
+        <div class="research-header">
+          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">Bachelor Research Project</a>
+          <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret · january 2025 to may 2025</span>
+        </div>
+        <p class="research-body">
+          During my sixth semester of bachelor, I discovered Abstract Interpretation and its applications
+          to system software engineering at the Antique team of ENS Paris, under the supervision of Jérôme
+          Féret, with a particular focus on several instantiations of the abstract notion of reduced product.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            Abstract Interpretation, introduced by Patrick and Radhia Cousot in the late 1970s, formalizes
+            program analysis as computations over over-approximations of reachable program states in order
+            to ensure termination while retaining sufficient precision to infer meaningful invariants.
+
+            <br><br>
+
+            Current research in Abstract Interpretation focuses on combining abstract domains to infer
+            invariants of different natures within a single abstract interpreter, a construction known as a
+            reduced product. My research project studied several instantiations of reduced products (such as
+            those using input/output channels or ghost quantities) and analyzed how they address termination
+            and refinement of abstract computations.
+          </span>
+        </p>
+      </li>
+    </ul>
+
+    <h3 class="point">Programming</h3>
+
+    <ul>
+      <li class="project-item">
+        <div>
+          <a class="project-title" href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
+          <span class="project-year">winter 2025</span>
+        </div>
+        <p class="project-body">
+          Kawa is an object-oriented toy programming language developed for a third-year bachelor project as
+          an introduction to applied programming language theory. The implementation, in OCaml, includes a
+          basic interpreter and a static type checker designed for exhaustiveness and precise type error
+          reporting.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            The interpreter is quite naive and
+            the pipeline for code execution is divided in three sequential parts: code parsing and structures loading, static type
+            type-checking and code evaluation/execution. These two last phases strongly depend on symbol/name resolution, which is
+            permanently being used during the interpretating process.
+            <br><br>
+            This language should not be used for real projects since its implementation is experimental and sometimes buggy.
+            Here is a <a href="https://github.com/DaimyoHub/KawaLang/tree/master/test">set of examples</a> that I used to test my implementation.
+          </span>
+        </p>
+      </li>
+    </ul>
+
+    <p class="side-projects">
+      I also enjoy some side projects, even if they are incomplete or not fully usable:
+      <b><a href="https://github.com/DaimyoHub/c-deepseek-api">C DeepSeek API</a></b> (summer 2025) is an
+      easy-to-use REST API in C for interacting with the DeepSeek API.
+      <b><a href="https://github.com/DaimyoHub/processor-proto">Processor proto</a></b> (spring 2022) is a C++
+      implementation of an abstract machine based on the Von Neumann architecture that interprets a simple
+      assembly language. It is likely unstable, as I started it some time ago and haven't updated it much since.
+    </p>
+
+  </body>
+
+  <footer>
+    <nav class="nav-buttons" style="justify-content: flex-start; margin: 0 0 12px; padding: 0; border: none;">
+      <a href="../index.html" class="button" style="padding-left: 0; border-left: none;">Main</a>
+      <a href="../about.html" class="button">About</a>
+      <a href="../contact.html" class="button">Contacts</a>
+    </nav>
+    Copyright &copy; 2025 Daimyo. Ce blog est sous licence
+    <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+  </footer>
+
+  <script>
+    document.querySelectorAll(".toggle").forEach(toggle => {
+      toggle.addEventListener("click", function() {
+        const more = this.nextElementSibling;
+        const isOpen = more.style.display === "inline";
+        more.style.display = isOpen ? "none" : "inline";
+        this.textContent = isOpen ? "[more]" : "[less]";
+      });
+    });
+  </script>
+</html>

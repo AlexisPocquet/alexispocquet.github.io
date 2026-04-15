@@ -65,7 +65,7 @@
         <div class="cv-date">2022 — 2024</div>
         <div class="cv-content">
           <span class="cv-title">Classe Préparatoire aux Grandes Écoles (CPGE)</span>
-          <span class="cv-details">Intensive program in Mathematics, Physics, and CS (MPI)</span>
+          <span class="cv-details">Intensive program in Mathematics, Physics, and CS (MPI) - Summa Cum Laude</span>
           <span class="cv-institution">Lycée Henri Wallon, Valenciennes</span>
         </div>
       </div>
@@ -99,50 +99,32 @@
 
       <li>
         <div class="research-header">
-          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">Bachelor Research Internship</a>
-          <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret and Jérôme Boillot · may 2025 to july 2025</span>
+          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">L3 Research Work</a>
+          <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret and Jérôme Boillot · january 2025 to july 2025</span>
         </div>
         <p class="research-body">
-          During my first internship with the Antique team at ENS Paris, under the supervision of
-          Jérôme Féret and Jérôme Boillot, I discovered Abstract Interpretation and its application
-          to operating system formal verification.
+          Over the course of my last bachelor semester and the following summer internship, I worked with the
+          Antique team at ENS Paris under the supervision of Jérôme Féret and Jérôme Boillot, discovering
+          Abstract Interpretation and its applications to system software formal verification.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            In this work, I proposed a method to verify that operating system properties are preserved during
-            the execution of application tasks on the IA-32 architecture by introducing an intermediate language
-            with a formal semantics to model assembly instructions. From this, I derived a semantics
-            characterizing all states reachable during task execution and constructed a sound and sufficiently
-            precise over-approximation of reachability analysis based on constraint-manipulating functions over
-            memory states. This approach makes it possible to compute memory states corresponding to writes in
-            critical regions, and I defined a set of states that I proved to be stable under this abstract
-            analysis, provided that application executions do not compromise the integrity of the host system's
-            essential data structures.
-          </span>
-        </p>
-      </li>
-
-      <li>
-        <div class="research-header">
-          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">Bachelor Research Project</a>
-          <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret · january 2025 to may 2025</span>
-        </div>
-        <p class="research-body">
-          During my sixth semester of bachelor, I discovered Abstract Interpretation and its applications
-          to system software engineering at the Antique team of ENS Paris, under the supervision of Jérôme
-          Féret, with a particular focus on several instantiations of the abstract notion of reduced product.
-          <span class="toggle" style="cursor:pointer;">[more]</span>
-          <span class="more">
-            Abstract Interpretation, introduced by Patrick and Radhia Cousot in the late 1970s, formalizes
-            program analysis as computations over over-approximations of reachable program states in order
-            to ensure termination while retaining sufficient precision to infer meaningful invariants.
-
+            Abstract Interpretation, introduced by Radhia and Patrick Cousot in the late 1970s, formalizes
+            program analysis as computations over over-approximations of reachable program states, ensuring
+            termination while retaining sufficient precision to infer meaningful invariants. My semester
+            project focused on combining abstract domains through a construction known as a reduced product,
+            studying several of its instantiations — such as those based on input/output channels or ghost
+            quantities — and analyzing how they address termination and refinement of abstract computations.
+      
             <br><br>
-
-            Current research in Abstract Interpretation focuses on combining abstract domains to infer
-            invariants of different natures within a single abstract interpreter, a construction known as a
-            reduced product. My research project studied several instantiations of reduced products (such as
-            those using input/output channels or ghost quantities) and analyzed how they address termination
-            and refinement of abstract computations.
+      
+            Building on this foundation, my internship extended this work towards operating system verification
+            on the IA-32 architecture. I proposed a method to verify that critical OS properties are preserved
+            during the execution of application tasks, by introducing an intermediate language with a formal
+            semantics to model assembly instructions. From this, I derived a reachability semantics
+            characterizing all states reachable during task execution, and constructed a sound and sufficiently
+            precise over-approximation based on constraint-manipulating functions over memory states. I then
+            defined a set of states proved to be stable under this abstract analysis, provided that application
+            executions do not compromise the integrity of the host system's essential data structures.
           </span>
         </p>
       </li>
@@ -154,12 +136,12 @@
       <li class="project-item">
         <div>
           <a class="project-title" href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
-          <span class="project-year">winter 2025</span>
+          <span class="project-year">winter 2024</span>
         </div>
         <p class="project-body">
-          Kawa is an object-oriented toy programming language developed for a third-year bachelor project as
-          an introduction to applied programming language theory. The implementation, in OCaml, includes a
-          basic interpreter and a static type checker designed for exhaustiveness and precise type error
+          Kawa is an object-oriented toy programming language developed as
+          part of an introduction to the programming language theory course of Université Paris-Saclay. The implementation, in OCaml, 
+          includes a basic interpreter and a static type checker designed for exhaustiveness and precise type error
           reporting.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
@@ -173,6 +155,92 @@
           </span>
         </p>
       </li>
+
+      <li class="project-item">
+        <div>
+          <a class="project-title" href="https://github.com/DaimyoHub/TinyProver">TinyProver</a>
+          <span class="project-year">fall 2025</span>
+        </div>
+        <p class="project-body">
+          TinyProver is an interactive proof assistant developed as part of the computational
+          logic course at École Polytechnique. The implementation, in OCaml, provides two
+          independent provers: one for propositional logic via simply typed lambda-calculus,
+          and one for a minimal kernel of dependent type theory.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            The simply typed prover supports type inference, bidirectional type checking, and
+            an interactive tactic-based proof mode with sequent manipulation — including
+            implication elimination, conjunction, disjunction, and the <code>cut</code>
+            tactic. Proofs can be written and loaded from <code>.proof</code> files.
+            <br><br>
+            The dependent types prover implements the core of Martin-Löf type theory: a
+            substitution algorithm, parallel beta-reduction for normalization, alpha-conversion,
+            and bidirectional type inference for <code>Pi</code>-types, natural numbers, and
+            propositional equality. The normalization strategy proved to be the most delicate
+            part, as a naive fixpoint approach was insufficient for terms defined by recursion
+            on <code>Nat</code>. The project concludes with a reflection on the gap between a
+            minimal kernel and a practically usable proof assistant.
+          </span>
+        </p>
+      </li>
+
+      <li class="project-item">
+        <div>
+          <a class="project-title" href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
+          <span class="project-year">winter 2026</span>
+        </div>
+        <p class="project-body">
+          MiniGoLang is a compiler for a subset of Go targeting the Intel x86-64 architecture,
+          developed as part of the compilation course at École Polytechnique. The implementation,
+          in OCaml, covers the full pipeline from source to assembly, with structured error
+          accumulation throughout the front-end.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            The front-end handles lexing, parsing, symbol resolution, and type checking. Errors
+            are accumulated monadically via a dedicated <code>Error</code> module rather than
+            failing at the first issue. The back-end produces x86-64 assembly using a
+            stack-based compilation scheme, preceded by a rewriting pass that simplifies
+            the typed AST before code generation.
+            <br><br>
+            The compiler passes all provided test cases, which cover parsing rejection, typing
+            correctness, and execution. Additional tests were written to validate nested struct
+            access, forward function calls, and mutually recursive functions.
+            Here is a <a href="https://github.com/DaimyoHub/MiniGoLang/tree/main/tests">set of test cases</a>
+            used during development, along with a
+            <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">detailed report</a>
+            of the implementation.
+          </span>
+        </p>
+      </li>
+
+      <li class="project-item">
+        <div>
+          <a class="project-title" href="https://github.com/DaimyoHub/MiniRust">MiniRust</a>
+          <span class="project-year">spring 2025</span>
+        </div>
+        <p class="project-body">
+          MiniRust is a school project exploring the internals of the Rust programming language.
+          The implementation, in OCaml, includes a partial borrow checker and a backend that
+          compiles a subset of Rust down to C code. It has been developped for the need of the
+          advanced functional programming course of ENS Paris-Saclay.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            The compilation pipeline runs a type checker and the borrow checker before emitting
+            any C code. The borrow checker is incomplete and does not handle all edge cases,
+            while the C backend produces non-idiomatic output relying heavily on labels — a
+            direct consequence of a linear translation from the intermediate MiniMir
+            representation. On 94 tests, the implementation passes 91 of them.
+            <br><br>
+            The most technically involved part of the backend is the resolution of struct
+            dependencies. It builds a dependency graph over structs, then performs a postfix DFS
+            on each connected component starting from the least dependent node, ensuring
+            definitions are emitted in the right order. Cyclic struct dependencies through
+            indirection are handled implicitly; true cycles are left out of scope.
+            Here is a <a href="https://github.com/DaimyoHub/MiniRust/tree/master/tests">set of test cases</a>
+            used to validate the implementation.
+          </span>
+        </p>
+      </li>
     </ul>
 
     <p class="side-projects">
@@ -182,6 +250,10 @@
       <b><a href="https://github.com/DaimyoHub/processor-proto">Processor proto</a></b> (spring 2022) is a C++
       implementation of an abstract machine based on the Von Neumann architecture that interprets a simple
       assembly language. It is likely unstable, as I started it some time ago and haven't updated it much since.
+      As part of the functional programming course of Université Paris-Saclay, I've also worked on the <b>
+      <a href="https://github.com/DaimyoHub/Project_0">development
+      of a game</a></b> (spring 2025). It is not aesthetic nor really playable, though oddly sympathetic to play to for some
+      minutes.
     </p>
 
   </body>

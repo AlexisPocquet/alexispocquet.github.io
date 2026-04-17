@@ -85,14 +85,18 @@
     <ul>
       <li>
         <div class="research-header">
-          <a class="research-title-link" href="posts/bachelor_research_intership.pdf">M1 Research Internship</a>
+          <a class="research-title-link" href="posts/m1_internship.html">M1 Research Internship</a>
           <span class="research-meta">Université Paris-Saclay, LMF, Deducteam team · Thibaut Benjamin · march 2026 to july 2026</span>
         </div>
         <p class="research-body">
-          Weak ω-categories are higher-dimensional algebraic structures generalizing the geometry of types in
-          intentional type theory, and are a leading candidate for representing homotopy types — though many
-          constructions within this representation remain poorly understood. The goal of this internship is to
-          extend a type-theoretical presentation of weak ω-categories with parametricity axioms, corresponding
+          Over my last M1 semester, I worked with the Deducteam at LMF (Université Paris-Saclay) under
+          the supervision of Thibaut Benjamin, on the type-theoretical foundations
+          of higher-dimensional algebra. Weak ω-categories are higher-dimensional
+          algebraic structures generalizing the geometry of types in intentional
+          type theory, and are a leading candidate for representing homotopy types —
+          though many constructions within this representation remain poorly
+          understood. The goal of this internship is to extend a type-theoretical
+          presentation of weak ω-categories with parametricity axioms, corresponding
           to a class of cylinder construction operations.
         </p>
       </li>
@@ -103,28 +107,23 @@
           <span class="research-meta">CNRS, ENS Paris, Antique team · Jérôme Féret and Jérôme Boillot · january 2025 to july 2025</span>
         </div>
         <p class="research-body">
-          Over the course of my last bachelor semester and the following summer internship, I worked with the
-          Antique team at ENS Paris under the supervision of Jérôme Féret and Jérôme Boillot, discovering
-          Abstract Interpretation and its applications to system software formal verification.
+          Over my last L3 semester, I worked with the Antique team (CNRS, ENS Ulm) on
+          Abstract Interpretation and its applications to system software verification.
+          My semester project studied the reduced product construction for combining
+          abstract domains. My internship extended this towards OS verification on
+          IA-32: I introduced an intermediate language with a formal semantics for
+          assembly instructions, derived a reachability semantics over memory states,
+          and constructed a sound over-approximation stable under task execution —
+          provided applications do not compromise the host system's critical data structures.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            Abstract Interpretation, introduced by Radhia and Patrick Cousot in the late 1970s, formalizes
-            program analysis as computations over over-approximations of reachable program states, ensuring
-            termination while retaining sufficient precision to infer meaningful invariants. My semester
-            project focused on combining abstract domains through a construction known as a reduced product,
-            studying several of its instantiations — such as those based on input/output channels or ghost
-            quantities — and analyzing how they address termination and refinement of abstract computations.
-      
-            <br><br>
-      
-            Building on this foundation, my internship extended this work towards operating system verification
-            on the IA-32 architecture. I proposed a method to verify that critical OS properties are preserved
-            during the execution of application tasks, by introducing an intermediate language with a formal
-            semantics to model assembly instructions. From this, I derived a reachability semantics
-            characterizing all states reachable during task execution, and constructed a sound and sufficiently
-            precise over-approximation based on constraint-manipulating functions over memory states. I then
-            defined a set of states proved to be stable under this abstract analysis, provided that application
-            executions do not compromise the integrity of the host system's essential data structures.
+            Abstract Interpretation, introduced by Radhia and Patrick Cousot in the
+            late 1970s, formalizes program analysis as computations over
+            over-approximations of reachable states — ensuring termination while
+            retaining enough precision to infer meaningful invariants. The reduced
+            product is a general construction for combining abstract domains; my
+            semester work studied several instantiations, including those based on
+            input/output channels and ghost quantities.
           </span>
         </p>
       </li>
@@ -135,23 +134,28 @@
     <ul>
       <li class="project-item">
         <div>
-          <a class="project-title" href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
-          <span class="project-year">winter 2024</span>
+          <span class="project-title">Language Pipelines</span>
+          <span class="project-year">2024 — 2026</span>
         </div>
         <p class="project-body">
-          Kawa is an object-oriented toy programming language developed as
-          part of an introduction to the programming language theory course of Université Paris-Saclay. The implementation, in OCaml, 
-          includes a basic interpreter and a static type checker designed for exhaustiveness and precise type error
-          reporting.
+          Two compiler projects tracing a clear progression.
+          <a href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
+          (Université Paris-Saclay, winter 2024) is a first contact with PLT tooling:
+          a sequential interpreter for an OO toy language where name resolution drives
+          both type-checking and evaluation.
+          <a href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
+          (École Polytechnique, winter 2026) reflects a more disciplined approach —
+          errors are accumulated monadically across the full front-end, and a typed-AST
+          rewriting pass precedes x86-64 code generation.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            The interpreter is quite naive and
-            the pipeline for code execution is divided in three sequential parts: code parsing and structures loading, static type
-            type-checking and code evaluation/execution. These two last phases strongly depend on symbol/name resolution, which is
-            permanently being used during the interpretating process.
-            <br><br>
-            This language should not be used for real projects since its implementation is experimental and sometimes buggy.
-            Here is a <a href="https://github.com/DaimyoHub/KawaLang/tree/master/test">set of examples</a> that I used to test my implementation.
+            The jump between the two projects is the real story: from a pipeline that
+            fails eagerly on the first error, to one that accumulates diagnostics via a
+            dedicated <code>Error</code> module and separates concerns between the
+            rewriting and emission phases. The compiler passes all provided test cases,
+            including nested struct access, forward calls, and mutually recursive functions.
+            See the <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">implementation report</a>
+            for details.
           </span>
         </p>
       </li>
@@ -162,53 +166,20 @@
           <span class="project-year">fall 2025</span>
         </div>
         <p class="project-body">
-          TinyProver is an interactive proof assistant developed as part of the computational
-          logic course at École Polytechnique. The implementation, in OCaml, provides two
-          independent provers: one for propositional logic via simply typed lambda-calculus,
-          and one for a minimal kernel of dependent type theory.
+          An interactive proof assistant developed for the computational logic course
+          at École Polytechnique, implementing two independent provers in OCaml: one
+          for propositional logic via STLC, one for a minimal kernel of dependent type theory.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            The simply typed prover supports type inference, bidirectional type checking, and
-            an interactive tactic-based proof mode with sequent manipulation — including
-            implication elimination, conjunction, disjunction, and the <code>cut</code>
-            tactic. Proofs can be written and loaded from <code>.proof</code> files.
-            <br><br>
-            The dependent types prover implements the core of Martin-Löf type theory: a
-            substitution algorithm, parallel beta-reduction for normalization, alpha-conversion,
-            and bidirectional type inference for <code>Pi</code>-types, natural numbers, and
-            propositional equality. The normalization strategy proved to be the most delicate
-            part, as a naive fixpoint approach was insufficient for terms defined by recursion
-            on <code>Nat</code>. The project concludes with a reflection on the gap between a
-            minimal kernel and a practically usable proof assistant.
-          </span>
-        </p>
-      </li>
-
-      <li class="project-item">
-        <div>
-          <a class="project-title" href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
-          <span class="project-year">winter 2026</span>
-        </div>
-        <p class="project-body">
-          MiniGoLang is a compiler for a subset of Go targeting the Intel x86-64 architecture,
-          developed as part of the compilation course at École Polytechnique. The implementation,
-          in OCaml, covers the full pipeline from source to assembly, with structured error
-          accumulation throughout the front-end.
-          <span class="toggle" style="cursor:pointer;">[more]</span>
-          <span class="more">
-            The front-end handles lexing, parsing, symbol resolution, and type checking. Errors
-            are accumulated monadically via a dedicated <code>Error</code> module rather than
-            failing at the first issue. The back-end produces x86-64 assembly using a
-            stack-based compilation scheme, preceded by a rewriting pass that simplifies
-            the typed AST before code generation.
-            <br><br>
-            The compiler passes all provided test cases, which cover parsing rejection, typing
-            correctness, and execution. Additional tests were written to validate nested struct
-            access, forward function calls, and mutually recursive functions.
-            Here is a <a href="https://github.com/DaimyoHub/MiniGoLang/tree/main/tests">set of test cases</a>
-            used during development, along with a
-            <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">detailed report</a>
-            of the implementation.
+            The STLC prover supports bidirectional type checking and an interactive
+            tactic mode with sequent manipulation. The dependent types kernel implements
+            the core of Martin-Löf type theory: substitution, parallel beta-reduction,
+            alpha-conversion, and bidirectional inference for <code>Pi</code>-types,
+            natural numbers, and propositional equality. The hardest part was
+            normalization: a naive fixpoint fails on terms defined by recursion over
+            <code>Nat</code>, requiring a more careful reduction strategy. The project
+            ends with a reflection on the gap between a minimal kernel and a usable
+            proof assistant.
           </span>
         </p>
       </li>
@@ -219,23 +190,17 @@
           <span class="project-year">spring 2025</span>
         </div>
         <p class="project-body">
-          MiniRust is a school project exploring the internals of the Rust programming language.
-          The implementation, in OCaml, includes a partial borrow checker and a backend that
-          compiles a subset of Rust down to C code. It has been developped for the need of the
-          advanced functional programming course of ENS Paris-Saclay.
+          A partial implementation of Rust's ownership discipline, developed for the
+          advanced functional programming course at ENS Paris-Saclay. The pipeline
+          runs a type checker and a borrow checker before emitting C.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            The compilation pipeline runs a type checker and the borrow checker before emitting
-            any C code. The borrow checker is incomplete and does not handle all edge cases,
-            while the C backend produces non-idiomatic output relying heavily on labels — a
-            direct consequence of a linear translation from the intermediate MiniMir
-            representation. On 94 tests, the implementation passes 91 of them.
-            <br><br>
-            The most technically involved part of the backend is the resolution of struct
-            dependencies. It builds a dependency graph over structs, then performs a postfix DFS
-            on each connected component starting from the least dependent node, ensuring
-            definitions are emitted in the right order. Cyclic struct dependencies through
-            indirection are handled implicitly; true cycles are left out of scope.
+            The borrow checker handles the common cases but does not cover all edge
+            cases — the interesting challenge was deciding where to draw the line and
+            document the gaps honestly. On the backend, the most technically involved
+            part is struct dependency resolution: a postfix DFS over a dependency graph
+            ensures definitions are emitted in the right order, with cyclic dependencies
+            through indirection handled implicitly. 91 of 94 tests pass.
             Here is a <a href="https://github.com/DaimyoHub/MiniRust/tree/master/tests">set of test cases</a>
             used to validate the implementation.
           </span>

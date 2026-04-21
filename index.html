@@ -36,8 +36,9 @@
 
     <p class="intro">
       I am pursuing the <i>Master Parisien de Recherche en Informatique (MPRI)</i>, with a primary interest
-      in <span class="fn" data-note="The study of formal systems for expressing computation and mathematical proof — bridging logic, algebra, and computer science.">type theory</span>
-      and <span class="fn" data-note="A branch of mathematics studying categories, functors, and natural transformations. Higher category theory generalises this to structures with morphisms between morphisms, ad infinitum.">higher category theory</span>. More generally, I like to learn and play with mathematical
+      in <span class="fn" data-note="This theory systematically studies structural representations of algebraic and
+      logicial structures. It is a major subject of programming language theory, synthetic homotopy and logics.">type theory</span>
+      and <span class="fn" data-note="This theory structurally studies algebraic and combinatoric structures that behave like higher-dimensional spaces.">higher category theory</span>. More generally, I like to learn and play with mathematical
       structures through the lense of theoretical computer science and I also enjoy
       <span class="fn" data-note="The formal study of programming languages: their syntax, semantics, type systems, and implementation.">programming langage theory</span>.
     </p>
@@ -90,15 +91,21 @@
           <span class="research-meta">Université Paris-Saclay, LMF, Deducteam team · Thibaut Benjamin · march 2026 to july 2026</span>
         </div>
         <p class="research-body">
-          Over my last M1 semester, I worked with the Deducteam at LMF (Université Paris-Saclay) under
-          the supervision of Thibaut Benjamin, on the type-theoretical foundations
-          of higher-dimensional algebra. <span class="fn" data-note="Generalisations of categories where morphisms exist at every dimension. Central to homotopy type theory and the semantics of dependent types.">Weak ω-categories</span> are higher-dimensional
-          algebraic structures generalizing the geometry of types in <span class="fn" data-note="A type theory where equality of terms is not decided definitively — two terms can be equal in multiple distinct ways, giving rise to a rich homotopical structure.">intentional
-          type theory</span>, and are a leading candidate for representing <span class="fn" data-note="In homotopy theory, a homotopy type captures the shape of a space up to continuous deformation. In HoTT, types are interpreted as such spaces.">homotopy types</span> —
-          though many constructions within this representation remain poorly
-          understood. The goal of this internship is to extend a type-theoretical
-          presentation of weak ω-categories with <span class="fn" data-note="Originating in Reynolds' abstraction theorem: polymorphic programs act uniformly across all types. Deep connections to naturality in category theory.">parametricity</span> axioms, corresponding
-          to a class of cylinder construction operations.
+          I'm currently working with the Deducteam at LMF (Université Paris-Saclay) under the supervision
+          of Thibaut Benjamin, on the type-theoretical foundations of <span class="fn" data-note="A algebraic definition of infinity-categories in which no strict equality exists. In this settings, relations hold up to higher-dimensional relations.">weak ω-categories</span>. I'm extending
+          their presentation with <span class="fn" data-note="Bernardy et al. define parametricity for a dependent type theory as a way to encode any relation between terms within the type theory.">parametricity</span> axioms, corresponding to cylinder construction operations.
+          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <span class="more">
+            Weak ω-categories, as defined by Maltsiniotis based on Grothendieck's drafts, are higher-dimensional
+            algebraic structures in which equalities hold only up to higher-dimensional coherences — making
+            them a natural setting for homotopy-theoretic reasoning. Their type-theoretical
+            presentation, due to Mimram and Finster, and extensively developped and studied by Benjamin, defines them syntactically
+            via a type theory called
+            CaTT. My work consists in augmenting CaTT with parametricity axioms, which internalize relational reasoning within the
+            type theory. These axioms correspond
+            to cylinder constructions — a class of operations producing new cells from existing ones by
+            abstracting over a dimension — and are expected to provide a formal way of doing homotopy theory within a very restricted type theory.
+          </span>
         </p>
       </li>
 
@@ -109,13 +116,9 @@
         </div>
         <p class="research-body">
           Over my last L3 semester, I worked with the Antique team (CNRS, ENS Ulm) on
-          <span class="fn" data-note="A framework introduced by Patrick and Radhia Cousot (1977) for reasoning about program correctness via sound over-approximations of the set of reachable program states.">Abstract Interpretation</span> and its applications to system software verification.
-          My semester project studied the <span class="fn" data-note="A construction combining two abstract domains into a more precise one, where each can refine the other's results. Formally a product in the lattice of abstract interpretations.">reduced product</span> construction for combining
-          abstract domains. My internship extended this towards OS verification on
-          IA-32: I introduced an intermediate language with a formal semantics for
-          assembly instructions, derived a reachability semantics over memory states,
-          and constructed a sound over-approximation stable under task execution —
-          provided applications do not compromise the host system's critical data structures.
+          <span class="fn" data-note="A framework introduced by Patrick and Radhia Cousot (1977) for reasoning about program correctness via sound over-approximations of the set of program states.">Abstract Interpretation</span> and OS verification on IA-32. I studied the
+          <span class="fn" data-note="A construction combining abstract domains into a more precise one, where each can refine the other's results.">reduced product</span> construction for abstract domains, then introduced an intermediate
+          language with formal semantics and a sound over-approximation stable under task execution.
           <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
             Abstract Interpretation, introduced by Radhia and Patrick Cousot in the
@@ -140,18 +143,13 @@
         </div>
         <p class="project-body">
           Two compiler projects tracing a clear progression.
-          <a href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
-          (Université Paris-Saclay, winter 2024) is a first contact with PLT tooling:
-          a sequential interpreter for an OO toy language where name resolution drives
-          both type-checking and evaluation.
-          <a href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
-          (École Polytechnique, winter 2026) reflects a more disciplined approach —
-          errors are accumulated monadically across the full front-end, and a typed-AST
-          rewriting pass precedes x86-64 code generation.
-          <span class="toggle" style="cursor:pointer;">[more]</span>
+          <a href="https://github.com/DaimyoHub/KawaLang">KawaLang</a> (Université Paris-Saclay, 2024)
+          is a sequential interpreter for an OO toy language. <a href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
+          (École Polytechnique, 2026) reflects a more disciplined approach — monadic error accumulation
+          across the full front-end, a typed-AST rewriting pass, and x86-64 code generation. <span class="toggle" style="cursor:pointer;">[more]</span>
           <span class="more">
-            The jump between the two projects is the real story: from a pipeline that
-            fails eagerly on the first error, to one that accumulates diagnostics via a
+            Importantly, the first pipeline fails eagerly on the first error and does not distinguish between the IO of the 
+            compiler and its analysis phases. The second one accumulates diagnostics via a
             dedicated <code>Error</code> module and separates concerns between the
             rewriting and emission phases. The compiler passes all provided test cases,
             including nested struct access, forward calls, and mutually recursive functions.

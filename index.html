@@ -23,7 +23,7 @@
   <header class="banner">
     <img src="./pics/ceiling_santa_caterina_napoli.jpg" alt="Toit de la chapelle de Santa Caterina, Naples."/>
     <div class="banner-text">
-      <h1>Alexis Pocquet</h1>
+      <h1 id="banner-name">Alexis Pocquet</h1>
     </div>
   </header>
 
@@ -36,9 +36,10 @@
 
     <p class="intro">
       I am pursuing the <i>Master Parisien de Recherche en Informatique (MPRI)</i>, with a primary interest
-      in type theory and higher category theory. More generally, I like to learn and play with mathematical
-      structures through the lense of theoretical computer science and I also enjoy programming langage
-      theory.
+      in <span class="fn" data-note="The study of formal systems for expressing computation and mathematical proof — bridging logic, algebra, and computer science.">type theory</span>
+      and <span class="fn" data-note="A branch of mathematics studying categories, functors, and natural transformations. Higher category theory generalises this to structures with morphisms between morphisms, ad infinitum.">higher category theory</span>. More generally, I like to learn and play with mathematical
+      structures through the lense of theoretical computer science and I also enjoy
+      <span class="fn" data-note="The formal study of programming languages: their syntax, semantics, type systems, and implementation.">programming langage theory</span>.
     </p>
 
     <h3 class="point">Curriculum</h3>
@@ -91,12 +92,12 @@
         <p class="research-body">
           Over my last M1 semester, I worked with the Deducteam at LMF (Université Paris-Saclay) under
           the supervision of Thibaut Benjamin, on the type-theoretical foundations
-          of higher-dimensional algebra. Weak ω-categories are higher-dimensional
-          algebraic structures generalizing the geometry of types in intentional
-          type theory, and are a leading candidate for representing homotopy types —
+          of higher-dimensional algebra. <span class="fn" data-note="Generalisations of categories where morphisms exist at every dimension. Central to homotopy type theory and the semantics of dependent types.">Weak ω-categories</span> are higher-dimensional
+          algebraic structures generalizing the geometry of types in <span class="fn" data-note="A type theory where equality of terms is not decided definitively — two terms can be equal in multiple distinct ways, giving rise to a rich homotopical structure.">intentional
+          type theory</span>, and are a leading candidate for representing <span class="fn" data-note="In homotopy theory, a homotopy type captures the shape of a space up to continuous deformation. In HoTT, types are interpreted as such spaces.">homotopy types</span> —
           though many constructions within this representation remain poorly
           understood. The goal of this internship is to extend a type-theoretical
-          presentation of weak ω-categories with parametricity axioms, corresponding
+          presentation of weak ω-categories with <span class="fn" data-note="Originating in Reynolds' abstraction theorem: polymorphic programs act uniformly across all types. Deep connections to naturality in category theory.">parametricity</span> axioms, corresponding
           to a class of cylinder construction operations.
         </p>
       </li>
@@ -108,8 +109,8 @@
         </div>
         <p class="research-body">
           Over my last L3 semester, I worked with the Antique team (CNRS, ENS Ulm) on
-          Abstract Interpretation and its applications to system software verification.
-          My semester project studied the reduced product construction for combining
+          <span class="fn" data-note="A framework introduced by Patrick and Radhia Cousot (1977) for reasoning about program correctness via sound over-approximations of the set of reachable program states.">Abstract Interpretation</span> and its applications to system software verification.
+          My semester project studied the <span class="fn" data-note="A construction combining two abstract domains into a more precise one, where each can refine the other's results. Formally a product in the lattice of abstract interpretations.">reduced product</span> construction for combining
           abstract domains. My internship extended this towards OS verification on
           IA-32: I introduced an intermediate language with a formal semantics for
           assembly instructions, derived a reachability semantics over memory states,
@@ -221,6 +222,30 @@
       minutes.
     </p>
 
+    <!-- FOOTNOTE TOOLTIP -->
+    <div id="fn-tooltip"></div>
+
+    <!-- TERMINAL -->
+    <div id="terminal" class="terminal-closed">
+      <div id="terminal-bar">
+        <span id="terminal-hint">alexis@mpri ~ $</span>
+        <button id="terminal-close" onclick="closeTerminal()">✕</button>
+      </div>
+      <div id="terminal-output"></div>
+      <div id="terminal-input-line">
+        <span class="t-prompt">❯</span>
+        <input id="terminal-input" type="text" autocomplete="off" spellcheck="false" placeholder="type 'help'" />
+      </div>
+    </div>
+
+    <!-- EASTER EGG OVERLAY -->
+    <div id="egg-overlay">
+      <div id="egg-box">
+        <div id="egg-content"></div>
+        <button id="egg-close" onclick="document.getElementById('egg-overlay').style.display='none'">close</button>
+      </div>
+    </div>
+
   </body>
 
   <footer>
@@ -229,18 +254,17 @@
       <a href="../about.html" class="button">About</a>
       <a href="../contact.html" class="button">Contacts</a>
     </nav>
-    Copyright &copy; 2025 Daimyo. Ce blog est sous licence
+    Copyright &copy; 2026 Alexis Pocquet. Ce blog est sous licence
     <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+    <span class="terminal-hint-footer">press <kbd>$</kbd> for terminal</span>
   </footer>
 
   <script>
-    document.querySelectorAll(".toggle").forEach(toggle => {
-      toggle.addEventListener("click", function() {
-        const more = this.nextElementSibling;
-        const isOpen = more.style.display === "inline";
-        more.style.display = isOpen ? "none" : "inline";
-        this.textContent = isOpen ? "[more]" : "[less]";
-      });
+    document.addEventListener("keydown", e => {
+      if (e.key === "$" && !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        window.location.href = "./term.html";
+      }
     });
   </script>
 </html>

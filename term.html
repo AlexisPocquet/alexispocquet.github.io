@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>you@stalker</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #000; color: #e2e2e2;
+      font-family: 'JetBrains Mono', 'Menlo', monospace;
+      font-size: 13.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    #wrap { height: 100vh; display: flex; flex-direction: column; padding: 16px 20px 12px; }
+    #out  { flex: 1; overflow-y: auto; scrollbar-width: none; }
+    #out::-webkit-scrollbar { display: none; }
+    .R { white-space: pre-wrap; word-break: break-word; min-height: 1.5em; }
+    #irow { position: fixed; opacity: 0; pointer-events: none; bottom: -100px; }
+    #pr  { white-space: nowrap; flex-shrink: 0; }
+    #inp { background: none; border: none; outline: none; color: #e2e2e2;
+      font-family: inherit; font-size: inherit; flex: 1; margin-left: 6px; caret-color: #e2e2e2; }
+    .cur { display: inline-block; width: 0.55em; height: 1em;
+       background: #e2e2e2; vertical-align: text-bottom; }
+    .gc { color: #22c55e; }
+    .cc { color: #67e8f9; }
+    .dc { color: #555555; }
+    .ec { color: #f87171; }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div id="out"></div>
+  <div id="irow">
+    <span id="pr"></span>
+    <input id="inp" type="text" autocomplete="off" spellcheck="false" autofocus/>
+  </div>
+</div>
+<script>
+'use strict';
+
+let FS  = {};
+let CWD = [];
+
+const elOut = document.getElementById('out');
+const elInp = document.getElementById('inp');
+
+function R(html, cls='') {
+  const d = document.createElement('div');
+  d.className = 'R' + (cls ? ' '+cls : '');
+  d.innerHTML  = html;
+  elOut.appendChild(d);
+}
+function B() { R(''); }
+function E(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function scroll() { elOut.scrollTop = elOut.scrollHeight; }
+function pwd() { return '~' + (CWD.length ? '/' + CWD.join('/') : ''); }
+
+let elCurLine = null;
+
+function newInputLine() {
+  if (elCurLine) elCurLine.remove();
+  elCurLine = document.createElement('div');
+  elCurLine.className = 'R';
+  elOut.appendChild(elCurLine);
+  refreshLine();
+}
+
+function refreshLine() {
+  if (!elCurLine) return;
+  elCurLine.innerHTML =
+    `<span class="gc">you@stalker</span> ${E(pwd())} ${E(elInp.value)}<span class="cur"></span>`;
+}
+
+elInp.addEventListener('input', refreshLine);
+document.addEventListener('click', () => elInp.focus());
+
+function buildTree(paths) {
+  const tree = {};
+  for (const path of paths) {
+    const parts = path.split('/').filter(Boolean);
+    let node = tree;
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (!node[parts[i]]) node[parts[i]] = { __dir: true };
+      node = node[parts[i]];
+    }
+    const fname = parts[parts.length - 1];
+    if (fname) node[fname] = { __file: true, path };
+  }
+  return tree;
+}
+
+function fsAt(segPath) {
+  let node = FS;
+  for (const seg of segPath) {
+    if (!node || !node[seg]) return null;
+    node = node[seg];
+  }
+  return node;
+}
+
+function resolvePath(arg) {
+  if (!arg || arg === '~') return [];
+  let parts;
+  if (arg.startsWith('~/')) parts = arg.slice(2).split('/').filter(Boolean);
+  else if (arg.startsWith('/')) parts = arg.slice(1).split('/').filter(Boolean);
+  else parts = [...CWD, ...arg.split('/').filter(Boolean)];
+  const res = [];
+  for (const p of parts) {
+    if (p === '..') res.pop();
+    else if (p !== '.') res.push(p);
+  }
+  return res;
+}
+
+async function fetchFile(filePath) {
+  try {
+    const r = await fetch('./term/' + filePath);
+    if (!r.ok) return null;
+    return await r.text();
+  } catch { return null; }
+}
+
+function cmdHelp() {
+  B();
+  R('  <span class="dc">commands:</span>');
+  R('  ls [path]    — list directory contents');
+  R('  cat <path>   — read a file');
+  R('  cd [dir]     — change directory  (.. to go up)');
+  R('  pwd          — current path');
+  R('  clear        — clear screen');
+  R('  exit         — back to main site');
+  B();
+}
+
+function cmdLs(arg) {
+  const path = arg ? resolvePath(arg) : CWD;
+  const node  = fsAt(path);
+  if (!node || node.__file) { R(`  <span class="ec">ls: ${E(arg||'.')}: not a directory</span>`); return; }
+  B();
+  const entries = Object.entries(node).filter(([k]) => k !== '__dir');
+  if (!entries.length) { R(`  <span class="dc">(empty)</span>`); B(); return; }
+  for (const [name, child] of entries.sort((a,b) => a[0].localeCompare(b[0]))) {
+    if (child.__dir) R(`  <span class="cc">${E(name)}/</span>`);
+    else R(`  ${E(name)}`);
+  }
+  B();
+}
+
+async function cmdCat(arg) {
+  if (!arg) { R(`  <span class="ec">cat: missing argument</span>`); return; }
+  const path = resolvePath(arg);
+  const node  = fsAt(path);
+  if (!node)        { R(`  <span class="ec">cat: ${E(arg)}: no such file</span>`); return; }
+  if (node.__dir)   { R(`  <span class="ec">cat: ${E(arg)}: is a directory</span>`); return; }
+  const content = await fetchFile(node.path);
+  if (content === null) { R(`  <span class="ec">cat: ${E(arg)}: could not read file</span>`); return; }
+  B();
+  for (const line of content.split('\n')) R('  ' + E(line));
+  B();
+}
+
+function cmdCd(arg) {
+  if (!arg || arg === '~') { CWD = []; refreshLine(); return; }
+  const path = resolvePath(arg);
+  const node  = fsAt(path);
+  if (!node)       { R(`  <span class="ec">cd: ${E(arg)}: no such directory</span>`); return; }
+  if (node.__file) { R(`  <span class="ec">cd: ${E(arg)}: not a directory</span>`); return; }
+  CWD = path;
+  refreshLine();
+}
+
+let HIST = [], HIDX = -1;
+
+function allPaths(node=FS, prefix='') {
+  const out = [];
+  for (const [k, v] of Object.entries(node)) {
+    if (k === '__dir' || k === '__file' || k === 'path') continue;
+    const full = prefix ? prefix + '/' + k : k;
+    out.push(full + (v.__dir ? '/' : ''));
+    if (v.__dir) out.push(...allPaths(v, full));
+  }
+  return out;
+}
+
+elInp.addEventListener('keydown', async e => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const v = elInp.value;
+    const pool = ['ls ', 'cat ', 'cd ', 'pwd', 'clear', 'exit', 'help', ...allPaths()];
+    const m = pool.filter(c => c.startsWith(v) && c !== v);
+    if (m.length === 1) elInp.value = m[0];
+    else if (m.length > 1) { B(); R('  <span class="dc">' + m.map(E).join('  ') + '</span>'); B(); scroll(); }
+    refreshLine();
+    return;
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (HIDX < HIST.length - 1) HIDX++;
+    elInp.value = HIST[HIST.length - 1 - HIDX] || '';
+    refreshLine();
+    return;
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (HIDX > 0) HIDX--;
+    else { HIDX = -1; elInp.value = ''; refreshLine(); return; }
+    elInp.value = HIST[HIST.length - 1 - HIDX] || '';
+    refreshLine();
+    return;
+  }
+  if (e.key !== 'Enter') return;
+
+  const raw = elInp.value.trim();
+  elInp.value = '';
+  HIDX = -1;
+  if (!raw) return;
+  HIST.push(raw);
+
+  if (elCurLine) { elCurLine.remove(); elCurLine = null; }
+  R(`<span class="gc">you@stalker</span> ${E(pwd())} ${E(raw)}`);
+
+  const sp   = raw.indexOf(' ');
+  const cmd  = sp < 0 ? raw : raw.slice(0, sp);
+  const args = sp < 0 ? null : raw.slice(sp + 1).trim() || null;
+
+  if      (cmd === 'help')  cmdHelp();
+  else if (cmd === 'ls')    cmdLs(args);
+  else if (cmd === 'cat')   await cmdCat(args);
+  else if (cmd === 'cd')    cmdCd(args);
+  else if (raw === 'pwd')   { B(); R('  ' + pwd()); B(); }
+  else if (raw === 'clear') elOut.innerHTML = '';
+  else if (raw === 'exit')  {
+    B(); R('  <span class="dc">bye.</span>'); B(); scroll();
+    setTimeout(() => window.location.href = './index.html', 400);
+  }
+  else R(`  <span class="ec">command not found: ${E(cmd)}</span>  <span class="dc">(try 'help')</span>`);
+
+  newInputLine();
+  scroll();
+});
+
+async function boot() {
+  try {
+    const r = await fetch('./manifest.json');
+    if (r.ok) {
+      const paths = await r.json();
+      FS = buildTree(paths);
+    }
+  } catch { /* no manifest, empty FS */ }
+  B();
+  R(`  <span class="dc">type 'help' for commands — 'ls' to explore files</span>`);
+  B();
+  newInputLine();
+  scroll();
+}
+
+boot();
+</script>
+</body>
+</html>

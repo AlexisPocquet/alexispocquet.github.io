@@ -225,17 +225,12 @@
     <!-- FOOTNOTE TOOLTIP -->
     <div id="fn-tooltip"></div>
 
-    <!-- TERMINAL -->
-    <div id="terminal" class="terminal-closed">
-      <div id="terminal-bar">
-        <span id="terminal-hint">alexis@mpri ~ $</span>
-        <button id="terminal-close" onclick="closeTerminal()">✕</button>
+    <!-- FLOATING TERMINAL -->
+    <div id="term-win">
+      <div id="term-bar">
+        <span id="term-bar-title">alexis@mpri</span>
       </div>
-      <div id="terminal-output"></div>
-      <div id="terminal-input-line">
-        <span class="t-prompt">❯</span>
-        <input id="terminal-input" type="text" autocomplete="off" spellcheck="false" placeholder="type 'help'" />
-      </div>
+      <iframe id="term-frame" src="./term.html" allowtransparency="true"></iframe>
     </div>
 
     <!-- EASTER EGG OVERLAY -->
@@ -254,17 +249,79 @@
       <a href="../about.html" class="button">About</a>
       <a href="../contact.html" class="button">Contacts</a>
     </nav>
-    Copyright &copy; 2026 Alexis Pocquet. Ce blog est sous licence
+    Copyright &copy; 2025 Daimyo. Ce blog est sous licence
     <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
     <span class="terminal-hint-footer">press <kbd>$</kbd> for terminal</span>
   </footer>
 
   <script>
-    document.addEventListener("keydown", e => {
-      if (e.key === "$" && !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) {
-        e.preventDefault();
-        window.location.href = "./term.html";
-      }
+  // ── FLOATING TERMINAL ──
+  const termWin = document.getElementById("term-win");
+
+  function termToggle() {
+    termWin.classList.toggle("open");
+    if (termWin.classList.contains("open"))
+      document.getElementById("term-frame").contentWindow.focus();
+  }
+
+  window.addEventListener("message", e => {
+    if (e.data === "term-exit") termWin.classList.remove("open");
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "$" && !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) {
+      e.preventDefault(); termToggle();
+    }
+  });
+
+  (function() {
+    const bar   = document.getElementById("term-bar");
+    const frame = document.getElementById("term-frame");
+    let dragging = false, ox = 0, oy = 0;
+    bar.addEventListener("mousedown", e => {
+      dragging = true;
+      ox = e.clientX - termWin.offsetLeft;
+      oy = e.clientY - termWin.offsetTop;
+      frame.style.pointerEvents = "none";
+      e.preventDefault();
     });
+    document.addEventListener("mousemove", e => {
+      if (!dragging) return;
+      termWin.style.left  = (e.clientX - ox) + "px";
+      termWin.style.top   = (e.clientY - oy) + "px";
+      termWin.style.right = "auto";
+    });
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+      frame.style.pointerEvents = "";
+    });
+  })();
+
+  document.querySelectorAll(".toggle").forEach(t => {
+    t.addEventListener("click", function() {
+      const more = this.nextElementSibling;
+      const open = more.style.display === "inline";
+      more.style.display = open ? "none" : "inline";
+      this.textContent = open ? "[more]" : "[less]";
+    });
+  });
+
+  // ── FOOTNOTE TOOLTIPS ──
+  const tooltip = document.getElementById("fn-tooltip");
+  document.querySelectorAll(".fn").forEach(el => {
+    el.addEventListener("mouseenter", e => {
+      tooltip.textContent = el.dataset.note;
+      tooltip.classList.add("fn-visible");
+      moveTooltip(e);
+    });
+    el.addEventListener("mousemove", moveTooltip);
+    el.addEventListener("mouseleave", () => tooltip.classList.remove("fn-visible"));
+  });
+  function moveTooltip(e) {
+    const x = e.clientX + 16, y = e.clientY + 16;
+    const w = tooltip.offsetWidth;
+    tooltip.style.left = (x + w > window.innerWidth - 16 ? x - w - 32 : x) + "px";
+    tooltip.style.top  = y + "px";
+  }
   </script>
 </html>

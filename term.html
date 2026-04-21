@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; background: #000; color: #e2e2e2;
+    html, body { height: 100%; background: transparent; color: #f0ece8;
       font-family: 'JetBrains Mono', 'Menlo', monospace;
       font-size: 13.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
     #wrap { height: 100vh; display: flex; flex-direction: column; padding: 16px 20px 12px; }
@@ -16,14 +16,14 @@
     .R { white-space: pre-wrap; word-break: break-word; min-height: 1.5em; }
     #irow { position: fixed; opacity: 0; pointer-events: none; bottom: -100px; }
     #pr  { white-space: nowrap; flex-shrink: 0; }
-    #inp { background: none; border: none; outline: none; color: #e2e2e2;
-      font-family: inherit; font-size: inherit; flex: 1; margin-left: 6px; caret-color: #e2e2e2; }
+    #inp { background: none; border: none; outline: none; color: #f0ece8;
+      font-family: inherit; font-size: inherit; flex: 1; margin-left: 6px; caret-color: #f0ece8; }
     .cur { display: inline-block; width: 0.55em; height: 1em;
-       background: #e2e2e2; vertical-align: text-bottom; }
-    .gc { color: #22c55e; }
-    .cc { color: #67e8f9; }
-    .dc { color: #555555; }
-    .ec { color: #f87171; }
+       background: #f0ece8; vertical-align: text-bottom; }
+    .gc { color: #7ecfa8; }   /* green  — username  (site green éclaté) */
+    .cc { color: #85b8d4; }   /* cyan   — dirs      (slate éclairé)     */
+    .dc { color: #8a8078; }   /* muted              (beige chaud)       */
+    .ec { color: #e07090; }   /* error              (wine éclairé)      */
   </style>
 </head>
 <body>
@@ -69,7 +69,7 @@ function newInputLine() {
 function refreshLine() {
   if (!elCurLine) return;
   elCurLine.innerHTML =
-    `<span class="gc">you@stalker</span> ${E(pwd())} ${E(elInp.value)}<span class="cur"></span>`;
+    `<span class="gc">you@stalker</span> ${E(pwd())} -> ${E(elInp.value)}<span class="cur"></span>`;
 }
 
 elInp.addEventListener('input', refreshLine);
@@ -218,7 +218,7 @@ elInp.addEventListener('keydown', async e => {
   HIST.push(raw);
 
   if (elCurLine) { elCurLine.remove(); elCurLine = null; }
-  R(`<span class="gc">you@stalker</span> ${E(pwd())} ${E(raw)}`);
+  R(`<span class="gc">you@stalker</span> ${E(pwd())} -> ${E(raw)}`);
 
   const sp   = raw.indexOf(' ');
   const cmd  = sp < 0 ? raw : raw.slice(0, sp);
@@ -231,8 +231,12 @@ elInp.addEventListener('keydown', async e => {
   else if (raw === 'pwd')   { B(); R('  ' + pwd()); B(); }
   else if (raw === 'clear') elOut.innerHTML = '';
   else if (raw === 'exit')  {
-    B(); R('  <span class="dc">bye.</span>'); B(); scroll();
-    setTimeout(() => window.location.href = './index.html', 400);
+    B(); R('  <span class="dc">bye.</span>'); B();
+    newInputLine(); scroll();
+    setTimeout(() => {
+      if (window.parent !== window) window.parent.postMessage('term-exit', '*');
+      else window.location.href = './index.html';
+    }, 400);
   }
   else R(`  <span class="ec">command not found: ${E(cmd)}</span>  <span class="dc">(try 'help')</span>`);
 

@@ -104,6 +104,32 @@ hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
   margin-bottom: 44px;
 }
 
+.intro p {
+  margin-bottom: 1.4em;
+}
+
+.interest-list {
+  list-style: none;
+  margin: 1.5em 0 1.8em;
+  padding: 0;
+  text-align: left;
+}
+
+.interest-list li {
+  position: relative;
+  margin: 0 0 1em;
+  padding-left: 1.5em;
+}
+
+.interest-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--wine);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
 /* ── SECTION HEADINGS ── */
 h3.point {
   font-family: 'Inter', sans-serif;

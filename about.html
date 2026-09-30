@@ -1,92 +1,201 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About · Alexis Pocquet</title>
+    <meta name="description" content="Alexis Pocquet — type theory, proof assistants, programming language theory, category theory.">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" shape-rendering="crispEdges"%3E%3Crect fill="%2323253f" x="1" y="0" width="11" height="1"/%3E%3Crect fill="%2323253f" x="0" y="1" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="2" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="3" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="4" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="5" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="6" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="7" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="8" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="9" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="10" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="11" width="13" height="1"/%3E%3Crect fill="%2323253f" x="1" y="12" width="11" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="2" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="3" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="4" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="5" y="5" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="5" y="6" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="7" width="4" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="8" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="7" y="8" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="9" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="7" y="9" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="2" y="10" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="8" y="10" width="2" height="1"/%3E%3C/svg%3E">
+
+    <!-- thème : appliqué avant le rendu pour éviter le flash -->
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-          delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false}
-          ]
-        });
-      });
+      try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     </script>
 
-    <title>Hina</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="style.css">
 
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- KaTeX : rendu des $...$ et $$...$$ (facultatif) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
   </head>
 
-  <header class="banner">
-  <img src="./pics/ceiling_santa_caterina_napoli.jpg" alt="Toit de la chapelle de Santa Caterina, Naples."/>
-  <a href="//commons.wikimedia.org/wiki/User:Commonists" title="User:Commonists">Commonists</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=113145574">Link</a>
-  <div class="banner-text">
-    <h1>Alexis Pocquet</h1>
-  </div>
-  </header>
-
-
   <body>
-    <nav class="nav-buttons" style="margin-bottom:20px;">
-      <a href="./index.html" class="button">Main</a>
-      <a href="./about.html" class="button">About</a>
-      <a href="./contact.html" class="button">Contacts</a>
-    </nav>
+    <div class="layout">
 
-    <hr/>
+    <!-- ─────────────────────────────  menu latéral  ───────────────────────── -->
+    <aside class="sidebar" aria-label="Menu">
+      <nav class="tree">
+        <p class="tree-root">~/alexis/</p>
+        <a href="./index.html"><span class="br" aria-hidden="true">├── </span>main</a>
+        <a href="./about.html" aria-current="page"><span class="br" aria-hidden="true">├── </span>about</a>
+        <a href="./contact.html"><span class="br" aria-hidden="true">└── </span>contacts</a>
+        <a href="https://github.com/DaimyoHub"><span class="br" aria-hidden="true">    ├── </span><i>@</i>github</a>
+        <a href="mailto:alexis.pocquet@polytechnique.edu" title="alexis.pocquet@polytechnique.edu"><span class="br" aria-hidden="true">    └── </span><i>@</i>mail</a>
+      </nav>
+    </aside>
 
-    <br>
+    <!-- ─────────────────────────────  favoris (colonne droite)  ──────────── -->
+    <aside class="rightbar" aria-label="Bookmarks">
+      <div class="bookmarks">
+        <p class="bm-title">pointers</p>
+        <p class="bm-group">maths & tcs</p>
+        <ul>
+          <li><a href="https://ncatlab.org/nlab/show/HomePage">nLab</a></li>
+          <li><a href="https://golem.ph.utexas.edu/category/">n-Category Café</a></li>
+        </ul>
+        <p class="bm-group">fun</p>
+        <ul>
+          <li><a href="https://helix-editor.com/">Helix</a></li>
+          <li><a href="https://excalidraw.com/">Excalidraw</a></li>
+          <li><a href="https://teddavis.org/p5live/">P5LIVE</a></li>
+          <li><a href="https://www.jasondavies.com/">Jason Davies</a></li>
+          <li><a href="https://neal.fun/">neal.fun</a></li>
+          <li><a href="https://archive.org/details/ghost-in-the-shell-1008p">Ghost in the Shell</a></li>
+        </ul>
+        <ul>
+        </ul>
+      </div>
+    </aside>
 
-    Ce site est un catastrophe expérimentale. C'est un mélange de HTML, de CSS et de JS que je ne maitrise absolument pas,
-    écrit de mes propres mains (ces parties là sont probablement très mal pensées) et de celles de Claude (Sonnet 4.6 Adaptif).
-    J'avais envie de tester l'AI slop, c'était sympa et le rendu me plait.
-    
-    <br><br>
+    <div class="page">
 
-    Note : Il y a un terminal qui apparait si l'on appuie sur '$'.
+      <header class="site-header">
+        <a class="mascot" href="./index.html" title="home">
+          <svg viewBox="0 0 13 13" width="44" height="44" role="img" aria-label="λ" shape-rendering="crispEdges">
+            <rect class="t" x="1" y="0" width="11" height="1"/>
+            <rect class="t" x="0" y="1" width="13" height="1"/>
+            <rect class="t" x="0" y="2" width="13" height="1"/>
+            <rect class="t" x="0" y="3" width="13" height="1"/>
+            <rect class="t" x="0" y="4" width="13" height="1"/>
+            <rect class="t" x="0" y="5" width="13" height="1"/>
+            <rect class="t" x="0" y="6" width="13" height="1"/>
+            <rect class="t" x="0" y="7" width="13" height="1"/>
+            <rect class="t" x="0" y="8" width="13" height="1"/>
+            <rect class="t" x="0" y="9" width="13" height="1"/>
+            <rect class="t" x="0" y="10" width="13" height="1"/>
+            <rect class="t" x="0" y="11" width="13" height="1"/>
+            <rect class="t" x="1" y="12" width="11" height="1"/>
+            <rect class="x" x="3" y="2" width="2" height="1"/>
+            <rect class="x" x="4" y="3" width="2" height="1"/>
+            <rect class="x" x="4" y="4" width="2" height="1"/>
+            <rect class="x" x="5" y="5" width="2" height="1"/>
+            <rect class="x" x="5" y="6" width="2" height="1"/>
+            <rect class="x" x="4" y="7" width="4" height="1"/>
+            <rect class="x" x="3" y="8" width="2" height="1"/>
+            <rect class="x" x="7" y="8" width="2" height="1"/>
+            <rect class="x" x="3" y="9" width="2" height="1"/>
+            <rect class="x" x="7" y="9" width="2" height="1"/>
+            <rect class="x" x="2" y="10" width="2" height="1"/>
+            <rect class="x" x="8" y="10" width="2" height="1"/>
+          </svg>
+        </a>
 
-    <br><br>
+        <div class="identity">
+          <h1>Alexis Pocquet</h1>
+          <p class="keywords">
+            <span>type theory</span> <i class="sep p">·</i> <span>proof assistants</span> <i class="sep b">·</i> <span>PL</span> <i class="sep g">·</i> <span>categories</span> <i class="sep p">·</i> <span>homotopy</span>
+          </p>
+        </div>
 
-    L'image que j'utilise en bannière est une magnifique photo du toit de la basilique de Santa Caterina, à Naples,
-    trouvée sur WikiCommons. Voilà le copyright : <a href="//commons.wikimedia.org/wiki/User:Commonists" title="User:Commonists">
-    Commonists</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0"
-    title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=113145574">
-    lien vers l'image</a>.
+        <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme" title="light / dark">◑</button>
+      </header>
 
-  </body>
-  <footer>
-    <br>
-    <hr>
+      <nav class="site-nav top-nav" aria-label="Main">
+        <a href="./index.html">main</a>
+        <a href="./about.html" aria-current="page">about</a>
+        <a href="./contact.html">contacts</a>
+      </nav>
 
-    <nav class="nav-buttons" style="margin-bottom:20px;">
-      <a href="../index.html" class="button">Main</a>
-      <a href="../about.html" class="button">About</a>
-      <a href="../contact.html" class="button">Contacts</a>
-    </nav>
+      <main>
 
-    Copyright (c) 2026 Alexis Pocquet. Ce blog est sous licence <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
-  </footer>
+        <section id="about">
+          <h2>About this site</h2>
 
-<script>
-  document.querySelectorAll(".toggle").forEach(toggle => {
-    toggle.addEventListener("click", function() {
-      const more = this.nextElementSibling; // the <span class="more">
-      
-      if (more.style.display === "none" || more.style.display === "") {
-        more.style.display = "inline";
-        this.textContent = "[...]";
-      } else {
-        more.style.display = "none";
-        this.textContent = "[...]";
+          <p>
+            The actual content of this site is my own, except where I needed to rephrase
+            some wordings properly: for that, I used Claude. The style and the HTML of the
+            site, however, come entirely from Claude, following a "nerdy, pastel and simple"
+            theme.
+          </p>
+        </section>
+
+        <section id="claude">
+          <h2>How I use Claude</h2>
+
+          <p>
+            I use Claude (mostly Claude) for a few specific things:
+          </p>
+          <ul class="plain-list">
+            <li>
+              programming, from time to time, tools that don't matter much to me and that
+              would otherwise require me to get the hang of tools I'm fundamentally not
+              interested in. For instance, the first version of this site, which I found
+              ugly, or a library for writing string diagrams in Typst, which is neither
+              usable nor stable
+            </li>
+            <li>
+              getting alternative explanations to the ones I've already been given on a
+              topic, whether in theoretical computer science or in maths
+            </li>
+            <li>
+              easily finding recipes
+            </li>
+            <li>
+              rephrasing sentences in English and translating from French into English.
+            </li>
+          </ul>
+          <p>
+            However, I don't use it to write proofs: when I tried, I never understood the
+            lines of reasoning it produced.
+          </p>
+          <p>
+            Overall, I'm moderately satisfied with what I've managed to produce with Claude,
+            this site being, in my opinion, the project whose result I like best.
+          </p>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          Copyright &copy; 2026 Alexis Pocquet. This blog is licensed under a
+          <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+        </p>
+      </footer>
+
+    </div>
+    </div>
+
+    <!-- bouton ◑ : bascule clair / sombre, mémorisé si possible -->
+    <script>
+      document.querySelector(".theme-toggle").addEventListener("click", function () {
+        var root = document.documentElement;
+        var dark = root.dataset.theme
+          ? root.dataset.theme === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.theme = dark ? "light" : "dark";
+        try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+      });
+
+      // menu latéral : met en avant la section visible (facultatif)
+      if ("IntersectionObserver" in window) {
+        var links = document.querySelectorAll(".tree a.toc");
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            links.forEach(function (a) {
+              a.classList.toggle("is-active", a.getAttribute("href") === "#" + e.target.id);
+            });
+          });
+        }, { rootMargin: "-20% 0px -70% 0px" });
+        document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
       }
-    });
-  });
-</script>
-
+    </script>
+  </body>
 </html>

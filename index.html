@@ -1,359 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alexis Pocquet</title>
-    <meta name="description" content="Alexis Pocquet — type theory, proof assistants, programming language theory, category theory.">
-    <meta name="color-scheme" content="light dark">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" shape-rendering="crispEdges"%3E%3Crect fill="%2323253f" x="1" y="0" width="11" height="1"/%3E%3Crect fill="%2323253f" x="0" y="1" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="2" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="3" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="4" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="5" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="6" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="7" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="8" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="9" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="10" width="13" height="1"/%3E%3Crect fill="%2323253f" x="0" y="11" width="13" height="1"/%3E%3Crect fill="%2323253f" x="1" y="12" width="11" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="2" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="3" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="4" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="5" y="5" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="5" y="6" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="4" y="7" width="4" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="8" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="7" y="8" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="3" y="9" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="7" y="9" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="2" y="10" width="2" height="1"/%3E%3Crect fill="%23bbeeff" x="8" y="10" width="2" height="1"/%3E%3C/svg%3E">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alexis Pocquet</title>
+  <meta name="description" content="Alexis Pocquet — type theory, proof assistants, programming language theory, category theory.">
+  <link rel="icon" href="lambda.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js"></script>
+</head>
+<body>
+<div class="layout">
 
-    <!-- thème : appliqué avant le rendu pour éviter le flash -->
-    <script>
-      try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-    </script>
+  <nav class="sidebar tree" aria-label="Menu">
+    <p>~/alexis/</p>
+    <a href="index.html" aria-current="page"><span>├── </span>main</a>
+    <a href="#research"><span>│   ├── </span><i>#</i>research</a>
+    <a href="#curriculum"><span>│   ├── </span><i>#</i>curriculum</a>
+    <a href="#programming"><span>│   └── </span><i>#</i>programming projects</a>
+    <a href="about.html"><span>├── </span>about</a>
+    <a href="contact.html"><span>└── </span>contacts</a>
+    <a href="https://github.com/DaimyoHub"><span>    ├── </span><i>@</i>github</a>
+    <a href="mailto:alexis.pocquet@polytechnique.edu" title="alexis.pocquet@polytechnique.edu"><span>    └── </span><i>@</i>mail</a>
+  </nav>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-    <link rel="stylesheet" href="style.css">
+  <aside class="bookmarks">
+    <h4>pointers</h4>
+    <h5>maths &amp; tcs</h5>
+    <ul>
+      <li><a href="https://ncatlab.org/nlab/show/HomePage">nLab</a></li>
+      <li><a href="https://golem.ph.utexas.edu/category/">n-Category Café</a></li>
+    </ul>
+    <h5>fun</h5>
+    <ul>
+      <li><a href="https://helix-editor.com/">Helix</a></li>
+      <li><a href="https://excalidraw.com/">Excalidraw</a></li>
+      <li><a href="https://teddavis.org/p5live/">P5LIVE</a></li>
+      <li><a href="https://www.jasondavies.com/">Jason Davies</a></li>
+      <li><a href="https://neal.fun/">neal.fun</a></li>
+      <li><a href="https://archive.org/details/ghost-in-the-shell-1008p">Ghost in the Shell</a></li>
+    </ul>
+  </aside>
 
-    <!-- KaTeX : rendu des $...$ et $$...$$ (facultatif) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-      onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-  </head>
-
-  <body>
-    <div class="layout">
-
-    <!-- ─────────────────────────────  menu latéral  ───────────────────────── -->
-    <aside class="sidebar" aria-label="Menu">
-      <nav class="tree">
-        <p class="tree-root">~/alexis/</p>
-        <a href="./index.html" aria-current="page"><span class="br" aria-hidden="true">├── </span>main</a>
-        <a href="#research" class="toc"><span class="br" aria-hidden="true">│   ├── </span><i>#</i>research</a>
-        <a href="#curriculum" class="toc"><span class="br" aria-hidden="true">│   ├── </span><i>#</i>curriculum</a>
-        <a href="#programming" class="toc"><span class="br" aria-hidden="true">│   └── </span><i>#</i>programming projects</a>
-        <a href="./about.html"><span class="br" aria-hidden="true">├── </span>about</a>
-        <a href="./contact.html"><span class="br" aria-hidden="true">└── </span>contacts</a>
-        <a href="https://github.com/DaimyoHub"><span class="br" aria-hidden="true">    ├── </span><i>@</i>github</a>
-        <a href="mailto:alexis.pocquet@polytechnique.edu" title="alexis.pocquet@polytechnique.edu"><span class="br" aria-hidden="true">    └── </span><i>@</i>mail</a>
-      </nav>
-    </aside>
-
-    <!-- ─────────────────────────────  favoris (colonne droite)  ──────────── -->
-    <aside class="rightbar" aria-label="Bookmarks">
-      <div class="bookmarks">
-        <p class="bm-title">pointers</p>
-        <p class="bm-group">maths & tcs</p>
-        <ul>
-          <li><a href="https://ncatlab.org/nlab/show/HomePage">nLab</a></li>
-          <li><a href="https://golem.ph.utexas.edu/category/">n-Category Café</a></li>
-        </ul>
-        <p class="bm-group">fun</p>
-        <ul>
-          <li><a href="https://helix-editor.com/">Helix</a></li>
-          <li><a href="https://excalidraw.com/">Excalidraw</a></li>
-          <li><a href="https://teddavis.org/p5live/">P5LIVE</a></li>
-          <li><a href="https://www.jasondavies.com/">Jason Davies</a></li>
-          <li><a href="https://neal.fun/">neal.fun</a></li>
-          <li><a href="https://archive.org/details/ghost-in-the-shell-1008p">Ghost in the Shell</a></li>
-        </ul>
-        <ul>
-        </ul>
+  <div class="page">
+    <header>
+      <a class="logo" href="index.html"><img src="lambda.svg" width="44" height="44" alt="λ"></a>
+      <div>
+        <h1>Alexis Pocquet</h1>
+        <p class="keywords">type&nbsp;theory <i>·</i> proof&nbsp;assistants <i>·</i> PL <i>·</i> categories <i>·</i> homotopy</p>
       </div>
-    </aside>
+      <button id="theme" type="button" title="light / dark">◑</button>
+    </header>
 
-    <div class="page">
+    <nav class="top-nav">
+      <a href="index.html" aria-current="page">main</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contacts</a>
+    </nav>
 
-      <header class="site-header">
-        <a class="mascot" href="./index.html" title="home">
-          <svg viewBox="0 0 13 13" width="44" height="44" role="img" aria-label="λ" shape-rendering="crispEdges">
-            <rect class="t" x="1" y="0" width="11" height="1"/>
-            <rect class="t" x="0" y="1" width="13" height="1"/>
-            <rect class="t" x="0" y="2" width="13" height="1"/>
-            <rect class="t" x="0" y="3" width="13" height="1"/>
-            <rect class="t" x="0" y="4" width="13" height="1"/>
-            <rect class="t" x="0" y="5" width="13" height="1"/>
-            <rect class="t" x="0" y="6" width="13" height="1"/>
-            <rect class="t" x="0" y="7" width="13" height="1"/>
-            <rect class="t" x="0" y="8" width="13" height="1"/>
-            <rect class="t" x="0" y="9" width="13" height="1"/>
-            <rect class="t" x="0" y="10" width="13" height="1"/>
-            <rect class="t" x="0" y="11" width="13" height="1"/>
-            <rect class="t" x="1" y="12" width="11" height="1"/>
-            <rect class="x" x="3" y="2" width="2" height="1"/>
-            <rect class="x" x="4" y="3" width="2" height="1"/>
-            <rect class="x" x="4" y="4" width="2" height="1"/>
-            <rect class="x" x="5" y="5" width="2" height="1"/>
-            <rect class="x" x="5" y="6" width="2" height="1"/>
-            <rect class="x" x="4" y="7" width="4" height="1"/>
-            <rect class="x" x="3" y="8" width="2" height="1"/>
-            <rect class="x" x="7" y="8" width="2" height="1"/>
-            <rect class="x" x="3" y="9" width="2" height="1"/>
-            <rect class="x" x="7" y="9" width="2" height="1"/>
-            <rect class="x" x="2" y="10" width="2" height="1"/>
-            <rect class="x" x="8" y="10" width="2" height="1"/>
-          </svg>
-        </a>
-
-        <div class="identity">
-          <h1>Alexis Pocquet</h1>
-          <p class="keywords">
-            <span>type theory</span> <i class="sep p">·</i> <span>proof assistants</span> <i class="sep b">·</i> <span>PL</span> <i class="sep g">·</i> <span>categories</span> <i class="sep p">·</i> <span>homotopy</span>
-          </p>
-        </div>
-
-        <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme" title="light / dark">◑</button>
-      </header>
-
-      <nav class="site-nav top-nav" aria-label="Main">
-        <a href="./index.html" aria-current="page">main</a>
-        <a href="./about.html">about</a>
-        <a href="./contact.html">contacts</a>
-      </nav>
-
-      <main>
-
-        <section class="intro">
-          <p>
-            I'm a master's student in theoretical computer science at the MPRI
-            (Master Parisien de Recherche en Informatique, IP Paris). I'm mainly interested in
-            <b>type theory</b>, <b>proof assistants</b>, <b>programming language theory</b> and <b>static analysis</b>, with an
-            additional focus on <b>homotopy theory</b> and <b>category theory</b>.
-            More generally, I like to see structures, dynamics and geometries arising from the
-            mathematical objects I study.
-          </p>
-        </section>
-
-        <!-- ─────────────────────────────  research  ───────────────────────────── -->
-        <section id="research">
-          <h2>Research Experience</h2>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="posts/m1_internship.html">M1 Research Internship</a>
-              <span class="date">march 2026 → july 2026</span>
-            </header>
-            <p class="entry-meta">Université Paris-Saclay, LMF, Deducteam · <a href="https://thibautbenjamin.github.io/">Thibaut Benjamin</a></p>
-            <p>
-              For my last M1 semester, I worked on augmenting the dependent type
-              theory CaTT (a type theory for globular weak
-              ω-categories) with cylindrification rules, and a translation from
-              it into Homotopy Type Theory.
-            </p>
-            <details>
-              <summary><span class="when-closed">[more]</span><span class="when-open">[less]</span></summary>
-              <p>
-                Type-theoretically, it allows us to exhibit a complex transport structure for Martin-Löf
-                types, which is hidden by the usual study of their higher structure using the J eliminator.
-                Categorically, it allows us to synthetically study a class of deep naturality constructions in weak
-                ω-categories.
-              </p>
-            </details>
-          </article>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="posts/bachelor_research_intership.pdf">L3 Research Work</a>
-              <span class="date">january 2025 → july 2025</span>
-            </header>
-            <p class="entry-meta">CNRS, ENS Paris, Antique · <a href="https://www.di.ens.fr/~feret/">Jérôme Féret</a> and <a href="https://www.jerome-boillot.com/">Jérôme Boillot</a></p>
-            <p>
-              Over my last L3 semester, I worked on
-              Abstract Interpretation and OS verification on IA-32. I studied the
-              reduced product construction for abstract domains, then introduced an intermediate
-              language with formal semantics and a sound over-approximation stable under task execution.
-            </p>
-            <details>
-              <summary><span class="when-closed">[more]</span><span class="when-open">[less]</span></summary>
-              <p>
-                Abstract Interpretation, introduced by Radhia and Patrick Cousot in the
-                late 1970s, formalizes program analysis as computations over
-                over-approximations of reachable states — ensuring termination while
-                retaining enough precision to infer meaningful invariants. The reduced
-                product is a general construction for combining abstract domains; my
-                semester work studied several instantiations, including those based on
-                input/output channels and ghost quantities.
-              </p>
-            </details>
-          </article>
-        </section>
-
-        <!-- ─────────────────────────────  curriculum  ─────────────────────────── -->
-        <section id="curriculum">
-          <h2>Curriculum</h2>
-
-          <ol class="timeline">
-            <li>
-              <span class="date">2025 → now</span>
-              <p class="cv-title">MSc in Theoretical Computer Science</p>
-              <p class="cv-details">Master Parisien de recherche en Informatique (MPRI)</p>
-              <p class="cv-place">Institut Polytechnique de Paris, École Polytechnique, Palaiseau</p>
-            </li>
-            <li>
-              <span class="date">2024 → 2025</span>
-              <p class="cv-title">BSc in Computer Science and Mathematics</p>
-              <p class="cv-details">Research Track / Magistère d'Informatique — Cum Laude</p>
-              <p class="cv-place">Université Paris-Saclay, Orsay</p>
-            </li>
-            <li>
-              <span class="date">2022 → 2024</span>
-              <p class="cv-title">Classe Préparatoire aux Grandes Écoles (CPGE)</p>
-              <p class="cv-details">Intensive program in Mathematics, Physics, and CS (MPI) — Summa Cum Laude</p>
-              <p class="cv-place">Lycée Henri Wallon, Valenciennes</p>
-            </li>
-            <li>
-              <span class="date">2022</span>
-              <p class="cv-title">Baccalauréat Général</p>
-              <p class="cv-details">Spec. Mathematics and Computer Science — Summa Cum Laude</p>
-              <p class="cv-place">Lycée Pasteur, Hénin-Beaumont</p>
-            </li>
-          </ol>
-        </section>
-
-        <!-- ─────────────────────────────  programming  ────────────────────────── -->
-        <section id="programming">
-          <h2>Programming projects</h2>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a>
-              <span class="date">2026</span>
-            </header>
-            <p class="entry-meta">École Polytechnique, Compilation</p>
-            <p>
-              A compiler for a fragment of Go, following a more disciplined approach than KawaLang — monadic error accumulation
-              across the full front-end, a typed-AST rewriting pass, and x86-64 code generation.
-            </p>
-            <details>
-              <summary><span class="when-closed">[more]</span><span class="when-open">[less]</span></summary>
-              <p>
-                Unlike KawaLang, which was not not stable nor very well designed, this
-                compiler accumulates diagnostics via a
-                dedicated <code>Error</code> monadic style module and separates concerns between the
-                rewriting and emission phases. The compiler passes all provided test cases,
-                including nested struct access, forward calls, and mutually recursive functions.
-                See the <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">implementation report</a>
-                for details.
-              </p>
-            </details>
-          </article>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="https://github.com/DaimyoHub/TinyProver">TinyProver</a>
-              <span class="date">fall 2025</span>
-            </header>
-            <p class="entry-meta">École Polytechnique, Computational Logic</p>
-            <p>
-              An interactive proof assistant developed for the computational logic course
-              at École Polytechnique, implementing two independent provers in OCaml: one
-              for propositional logic via STLC, one for a minimal kernel of dependent type theory.
-            </p>
-            <details>
-              <summary><span class="when-closed">[more]</span><span class="when-open">[less]</span></summary>
-              <p>
-                The STLC prover supports bidirectional type checking and an interactive
-                tactic mode with sequent manipulation. The dependent types kernel implements
-                the core of Martin-Löf type theory: substitution, parallel beta-reduction,
-                alpha-conversion, and bidirectional inference for <code>Pi</code>-types,
-                natural numbers, and propositional equality. The hardest part was
-                normalization: a naive fixpoint fails on terms defined by recursion over
-                <code>Nat</code>, requiring a more careful reduction strategy.
-              </p>
-            </details>
-          </article>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="https://github.com/DaimyoHub/MiniRust">MiniRust</a>
-              <span class="date">spring 2025</span>
-            </header>
-            <p class="entry-meta">ENS Paris-Saclay, Programmation 2</p>
-            <p>
-              A partial implementation of Rust's ownership discipline, developed for the
-              advanced functional programming course at ENS Paris-Saclay. The pipeline
-              runs a type checker and a borrow checker before emitting C.
-            </p>
-            <details>
-              <summary><span class="when-closed">[more]</span><span class="when-open">[less]</span></summary>
-              <p>
-                The borrow checker handles the common cases but does not cover all edge
-                cases. On the backend, the most technically involved
-                part is struct dependency resolution: a postfix DFS over a dependency graph
-                ensures definitions are emitted in the right order, with cyclic dependencies
-                through indirection handled implicitly. 91 of 94 tests pass.
-                Here is a <a href="https://github.com/DaimyoHub/MiniRust/tree/master/tests">set of test cases</a>
-                used to validate the implementation.
-              </p>
-            </details>
-          </article>
-
-          <article class="entry">
-            <header class="entry-head">
-              <a class="entry-title" href="https://github.com/DaimyoHub/KawaLang">KawaLang</a>
-              <span class="date">2024</span>
-            </header>
-            <p class="entry-meta">Université Paris-Saclay, Théorie des langages de programmation</p>
-            <p>
-              A sequential interpreter for an object oriented toy language.
-              It is quite unstable but still works enough to check all the tests
-              we were meant to check. Still, the design is crap as it does not
-              distinguish between the IO of the compiler and its analysis phases,
-              and as the semantics of the language is naively thought.
-            </p>
-          </article>
-
-          <p class="side-projects">
-            I also enjoy some side projects:
-            <b><a href="https://github.com/DaimyoHub/c-deepseek-api">C DeepSeek API</a></b> (summer 2025),
-            an easy-to-use REST API in C for the DeepSeek API;
-            <b><a href="https://github.com/DaimyoHub/processor-proto">Processor proto</a></b> (spring 2022),
-            a C++ abstract machine interpreting a simple assembly language; and a
-            <b><a href="https://github.com/DaimyoHub/Project_0">small game</a></b> (spring 2025) developed
-            as part of the functional programming course at Université Paris-Saclay.
-          </p>
-        </section>
-
-      </main>
-
-      <footer class="site-footer">
+    <main>
+      <section>
         <p>
-          Copyright &copy; 2026 Alexis Pocquet. This blog is licensed under a
-          <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+          I'm a master's student in theoretical computer science at the MPRI
+          (Master Parisien de Recherche en Informatique, IP Paris). I'm mainly interested in
+          <b>type theory</b>, <b>proof assistants</b>, <b>programming language theory</b> and <b>static analysis</b>, with an
+          additional focus on <b>homotopy theory</b> and <b>category theory</b>.
+          More generally, I like to see structures, dynamics and geometries arising from the
+          mathematical objects I study.
         </p>
-      </footer>
+      </section>
 
-    </div>
-    </div>
+      <section id="research">
+        <h2>Research Experience</h2>
 
-    <!-- bouton ◑ : bascule clair / sombre, mémorisé si possible -->
-    <script>
-      document.querySelector(".theme-toggle").addEventListener("click", function () {
-        var root = document.documentElement;
-        var dark = root.dataset.theme
-          ? root.dataset.theme === "dark"
-          : window.matchMedia("(prefers-color-scheme: dark)").matches;
-        root.dataset.theme = dark ? "light" : "dark";
-        try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-      });
+        <article class="entry">
+          <h3><a href="posts/m1_internship.html">M1 Research Internship</a> <span class="date">march 2026 → july 2026</span></h3>
+          <p class="meta">Université Paris-Saclay, LMF, Deducteam · <a href="https://thibautbenjamin.github.io/">Thibaut Benjamin</a></p>
+          <p>
+            For my last M1 semester, I worked on augmenting the dependent type
+            theory CaTT (a type theory for globular weak
+            ω-categories) with cylindrification rules, and a translation from
+            it into Homotopy Type Theory.
+          </p>
+          <details>
+            <summary></summary>
+            <p>
+              Type-theoretically, it allows us to exhibit a complex transport structure for Martin-Löf
+              types, which is hidden by the usual study of their higher structure using the J eliminator.
+              Categorically, it allows us to synthetically study a class of deep naturality constructions in weak
+              ω-categories.
+            </p>
+          </details>
+        </article>
 
-      // menu latéral : met en avant la section visible (facultatif)
-      if ("IntersectionObserver" in window) {
-        var links = document.querySelectorAll(".tree a.toc");
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            links.forEach(function (a) {
-              a.classList.toggle("is-active", a.getAttribute("href") === "#" + e.target.id);
-            });
-          });
-        }, { rootMargin: "-20% 0px -70% 0px" });
-        document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
-      }
-    </script>
-  </body>
+        <article class="entry">
+          <h3><a href="posts/bachelor_research_intership.pdf">L3 Research Work</a> <span class="date">january 2025 → july 2025</span></h3>
+          <p class="meta">CNRS, ENS Paris, Antique · <a href="https://www.di.ens.fr/~feret/">Jérôme Féret</a> and <a href="https://www.jerome-boillot.com/">Jérôme Boillot</a></p>
+          <p>
+            Over my last L3 semester, I worked on
+            Abstract Interpretation and OS verification on IA-32. I studied the
+            reduced product construction for abstract domains, then introduced an intermediate
+            language with formal semantics and a sound over-approximation stable under task execution.
+          </p>
+          <details>
+            <summary></summary>
+            <p>
+              Abstract Interpretation, introduced by Radhia and Patrick Cousot in the
+              late 1970s, formalizes program analysis as computations over
+              over-approximations of reachable states — ensuring termination while
+              retaining enough precision to infer meaningful invariants. The reduced
+              product is a general construction for combining abstract domains; my
+              semester work studied several instantiations, including those based on
+              input/output channels and ghost quantities.
+            </p>
+          </details>
+        </article>
+      </section>
+
+      <section id="curriculum">
+        <h2>Curriculum</h2>
+        <ol class="timeline">
+          <li>
+            <span class="date">2025 → now</span>
+            <b>MSc in Theoretical Computer Science</b>
+            <p>Master Parisien de recherche en Informatique (MPRI)</p>
+            <small>Institut Polytechnique de Paris, École Polytechnique, Palaiseau</small>
+          </li>
+          <li>
+            <span class="date">2024 → 2025</span>
+            <b>BSc in Computer Science and Mathematics</b>
+            <p>Research Track / Magistère d'Informatique — Cum Laude</p>
+            <small>Université Paris-Saclay, Orsay</small>
+          </li>
+          <li>
+            <span class="date">2022 → 2024</span>
+            <b>Classe Préparatoire aux Grandes Écoles (CPGE)</b>
+            <p>Intensive program in Mathematics, Physics, and CS (MPI) — Summa Cum Laude</p>
+            <small>Lycée Henri Wallon, Valenciennes</small>
+          </li>
+          <li>
+            <span class="date">2022</span>
+            <b>Baccalauréat Général</b>
+            <p>Spec. Mathematics and Computer Science — Summa Cum Laude</p>
+            <small>Lycée Pasteur, Hénin-Beaumont</small>
+          </li>
+        </ol>
+      </section>
+
+      <section id="programming">
+        <h2>Programming projects</h2>
+
+        <article class="entry">
+          <h3><a href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a> <span class="date">2026</span></h3>
+          <p class="meta">École Polytechnique, Compilation</p>
+          <p>
+            A compiler for a fragment of Go, following a more disciplined approach than KawaLang — monadic error accumulation
+            across the full front-end, a typed-AST rewriting pass, and x86-64 code generation.
+          </p>
+          <details>
+            <summary></summary>
+            <p>
+              Unlike KawaLang, which was not not stable nor very well designed, this
+              compiler accumulates diagnostics via a
+              dedicated <code>Error</code> monadic style module and separates concerns between the
+              rewriting and emission phases. The compiler passes all provided test cases,
+              including nested struct access, forward calls, and mutually recursive functions.
+              See the <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">implementation report</a>
+              for details.
+            </p>
+          </details>
+        </article>
+
+        <article class="entry">
+          <h3><a href="https://github.com/DaimyoHub/TinyProver">TinyProver</a> <span class="date">fall 2025</span></h3>
+          <p class="meta">École Polytechnique, Computational Logic</p>
+          <p>
+            An interactive proof assistant developed for the computational logic course
+            at École Polytechnique, implementing two independent provers in OCaml: one
+            for propositional logic via STLC, one for a minimal kernel of dependent type theory.
+          </p>
+          <details>
+            <summary></summary>
+            <p>
+              The STLC prover supports bidirectional type checking and an interactive
+              tactic mode with sequent manipulation. The dependent types kernel implements
+              the core of Martin-Löf type theory: substitution, parallel beta-reduction,
+              alpha-conversion, and bidirectional inference for <code>Pi</code>-types,
+              natural numbers, and propositional equality. The hardest part was
+              normalization: a naive fixpoint fails on terms defined by recursion over
+              <code>Nat</code>, requiring a more careful reduction strategy.
+            </p>
+          </details>
+        </article>
+
+        <article class="entry">
+          <h3><a href="https://github.com/DaimyoHub/MiniRust">MiniRust</a> <span class="date">spring 2025</span></h3>
+          <p class="meta">ENS Paris-Saclay, Programmation 2</p>
+          <p>
+            A partial implementation of Rust's ownership discipline, developed for the
+            advanced functional programming course at ENS Paris-Saclay. The pipeline
+            runs a type checker and a borrow checker before emitting C.
+          </p>
+          <details>
+            <summary></summary>
+            <p>
+              The borrow checker handles the common cases but does not cover all edge
+              cases. On the backend, the most technically involved
+              part is struct dependency resolution: a postfix DFS over a dependency graph
+              ensures definitions are emitted in the right order, with cyclic dependencies
+              through indirection handled implicitly. 91 of 94 tests pass.
+              Here is a <a href="https://github.com/DaimyoHub/MiniRust/tree/master/tests">set of test cases</a>
+              used to validate the implementation.
+            </p>
+          </details>
+        </article>
+
+        <article class="entry">
+          <h3><a href="https://github.com/DaimyoHub/KawaLang">KawaLang</a> <span class="date">2024</span></h3>
+          <p class="meta">Université Paris-Saclay, Théorie des langages de programmation</p>
+          <p>
+            A sequential interpreter for an object oriented toy language.
+            It is quite unstable but still works enough to check all the tests
+            we were meant to check. Still, the design is crap as it does not
+            distinguish between the IO of the compiler and its analysis phases,
+            and as the semantics of the language is naively thought.
+          </p>
+        </article>
+
+        <p>
+          I also enjoy some side projects:
+          <b><a href="https://github.com/DaimyoHub/c-deepseek-api">C DeepSeek API</a></b> (summer 2025),
+          an easy-to-use REST API in C for the DeepSeek API;
+          <b><a href="https://github.com/DaimyoHub/processor-proto">Processor proto</a></b> (spring 2022),
+          a C++ abstract machine interpreting a simple assembly language; and a
+          <b><a href="https://github.com/DaimyoHub/Project_0">small game</a></b> (spring 2025) developed
+          as part of the functional programming course at Université Paris-Saclay.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Copyright &copy; 2026 Alexis Pocquet. This blog is licensed under a
+      <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+    </footer>
+  </div>
+</div>
+</body>
 </html>

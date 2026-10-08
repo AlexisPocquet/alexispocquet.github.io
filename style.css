@@ -16,7 +16,6 @@
   --box:     light-dark(#dbdbff, #34364a);
   --pink:    light-dark(#f59ad8, #f7a8e8);
   --blue:    light-dark(#7fb8f0, #9ccdf7);
-  --green:   light-dark(#7fd49a, #93dfaa);
 }
 [data-theme="light"] { color-scheme: light; }
 [data-theme="dark"]  { color-scheme: dark; }
@@ -24,6 +23,10 @@
 /* Base */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; text-size-adjust: 100%; }
+
+.epigraph { margin: 0 0 2rem auto; max-width: 30rem; text-align: right; font-style: italic; color: var(--soft); }
+.epigraph p { margin: 0; text-align: right; }
+.epigraph footer { margin: 0.3rem 0 0; font-size: 0.8rem; font-style: normal; color: var(--dim); }
 
 body {
   margin: 0;
@@ -34,6 +37,7 @@ body {
 
 p { margin: 0 0 0.8rem; }
 b { font-weight: 600; }
+sub, sup { line-height: 0; }  /* indices and exponents do not stretch the line */
 code { font: inherit; color: var(--title); }
 
 a {
@@ -51,14 +55,14 @@ a:hover { background: var(--mark); }
 header { display: flex; align-items: center; gap: 0.9rem; }
 header > div { flex: 1; }
 .logo { line-height: 0; }
+.logo img { image-rendering: pixelated; }  /* keep pixel art sharp when scaled */
 .logo:hover { background: none; }
 
 h1 { margin: 0; font-size: 1.3rem; font-weight: 600; line-height: 1.25; text-transform: lowercase; }
 
 .keywords { margin: 0.15rem 0 0; font-size: 0.8rem; color: var(--dim); text-transform: lowercase; }
 .keywords i { font-style: normal; color: var(--pink); }
-.keywords i:nth-of-type(3n+2) { color: var(--blue); }
-.keywords i:nth-of-type(3n+3) { color: var(--green); }
+.keywords i:nth-of-type(even) { color: var(--blue); }
 
 #theme { font-size: 1.1rem; color: var(--dim); background: none; border: 0; cursor: pointer; }
 #theme:hover { color: var(--ink); }
@@ -83,8 +87,8 @@ section:first-child { margin-top: 0; }
 h2 { margin: 0 0 1rem; font-size: 0.95rem; font-weight: 600; color: var(--title); text-transform: lowercase; }
 h2::before { content: "## "; font-weight: 400; color: var(--note, var(--dim)); }
 #research    { --note: var(--pink); }
-#curriculum  { --note: var(--blue); }
-#programming { --note: var(--green); }
+#curriculum  { --note: var(--pink); }
+#programming { --note: var(--pink); }
 
 /* Boxes (research, projects) */
 .entry {
@@ -129,11 +133,9 @@ details p { margin-top: 0.4rem; padding-left: 1rem; border-left: 1px solid var(-
   width: 7px;
   height: 7px;
   background: var(--bg);
-  border: 1px solid var(--pink);
+  border: 1px solid var(--blue);
 }
-.timeline li:nth-child(3n+2)::before { border-color: var(--blue); }
-.timeline li:nth-child(3n+3)::before { border-color: var(--green); }
-.timeline li:first-child::before { background: var(--pink); }
+.timeline li:first-child::before { background: var(--blue); }
 .timeline p { margin: 0; font-size: 0.9rem; color: var(--soft); }
 .timeline .date { display: block; }
 .timeline b { display: block; color: var(--ink); }
@@ -143,6 +145,19 @@ details p { margin-top: 0.4rem; padding-left: 1rem; border-left: 1px solid var(-
 .list { padding-left: 1.4rem; list-style: none; }
 .list li { margin-bottom: 0.4rem; }
 .list li::before { content: "-"; margin-left: -1.1rem; float: left; color: var(--dim); }
+
+/* References, usable anywhere:
+   - list under a paragraph:  <ul class="refs"><li id="key">…</li></ul>
+   - citation in the text:    <a class="cite" href="#key">[key, section 1]</a> */
+.refs { list-style: none; margin: -0.3rem 0 0.8rem; padding: 0; font-size: 0.8rem; color: var(--dim); }
+.refs li { padding-left: 1.2rem; text-indent: -1.2rem; scroll-margin-top: 30vh; }
+.refs li::before { content: "- "; }
+.refs a { color: inherit; }
+.refs a:hover { color: var(--link); }
+.refs li:target { color: var(--ink); background: var(--mark); }
+
+.cite { font-size: 0.95em; color: var(--dim); text-decoration: none; white-space: nowrap; }
+.cite:hover { color: var(--link); }
 
 /* Justified text (left-aligned on phones) */
 main p, .list li { text-align: justify; hyphens: auto; }

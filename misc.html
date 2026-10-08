@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Misc · Alexis Pocquet</title>
+  <meta name="description" content="Alexis Pocquet — type theory, proof assistants, programming language theory, category theory.">
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js"></script>
+</head>
+<body>
+<div class="layout">
+
+  <nav class="sidebar tree" aria-label="Menu">
+    <p>~/alexis/</p>
+    <a href="index.html"><span>├── </span>main/</a>
+    <a href="about.html"><span>├── </span>about/</a>
+    <a href="misc.html" aria-current="page"><span>├── </span>misc/</a>
+    <a href="contact.html"><span>└── </span>contacts/</a>
+    <a href="https://github.com/DaimyoHub"><span>    ├── </span><i>@</i>github</a>
+    <a href="mailto:alexis.pocquet@polytechnique.edu" title="alexis.pocquet@polytechnique.edu"><span>    └── </span><i>@</i>mail</a>
+  </nav>
+
+  <aside class="bookmarks">
+    <h4>pointers</h4>
+    <h5>maths &amp; tcs</h5>
+    <ul>
+      <li><a href="https://ncatlab.org/nlab/show/HomePage">nLab</a></li>
+      <li><a href="https://golem.ph.utexas.edu/category/">n-Category Café</a></li>
+    </ul>
+    <h5>fun</h5>
+    <ul>
+      <li><a href="https://helix-editor.com/">Helix</a></li>
+      <li><a href="https://excalidraw.com/">Excalidraw</a></li>
+      <li><a href="https://teddavis.org/p5live/">P5LIVE</a></li>
+      <li><a href="https://www.jasondavies.com/">Jason Davies</a></li>
+      <li><a href="https://neal.fun/">neal.fun</a></li>
+      <li><a href="https://archive.org/details/ghost-in-the-shell-1008p">Ghost in the Shell</a></li>
+    </ul>
+  </aside>
+
+  <div class="page">
+    <header>
+      <a class="logo" href="index.html"><img src="logo.png" width="48" height="48" alt="logo"></a>
+      <div>
+        <h1>Alexis Pocquet</h1>
+        <p class="keywords">type&nbsp;theory <i>·</i> programming&nbsp;languages <i>·</i> categories</p>
+      </div>
+      <button id="theme" type="button" title="light / dark">◑</button>
+    </header>
+
+    <nav class="top-nav">
+      <a href="index.html">main</a>
+      <a href="about.html" aria-current="page">about</a>
+      <a href="contact.html">contacts</a>
+    </nav>
+
+    <main>
+      <section>
+        <p>
+          Below is a list of facts about the things I study. They are not
+          meant to be understood as formal results, because they might just be rigorously wrong. Though I'm
+          writing them informally, mainly because when I discovered them in the litterature or talking with others
+          for the first time, I felt like a significant part of my little world had changed.
+        </p>
+
+        <br>
+
+        <blockquote class="epigraph">
+          <p>On a bien souvent répété que la Géométrie est l'art de bien raisonner sur des figures mal faites.</p>
+          <footer>Henri Poincaré, <i>Analysis Situs</i> (1895)</footer>
+        </blockquote>
+      </section>
+
+      <section>
+        <h2>why should we laxify things ?</h2>
+
+        <p>
+          Laxifying a categorical construction allows one to discover more structure on it. The stricter our
+          structures, the lower the dimensions, the less information. However, laxifying implies working with
+          more complex objects, as strict equalities become cells. It is analogous to the fact that an intentional
+          type theory allowing few reductions (/strict equalities) tends to make the proofs (/the structures of cells)
+          more tedious.
+        </p>
+      </section>
+
+      <section>
+        <h2>a universal caracterization of dependent type theories</h2>
+
+        <p>
+          In his work on natural models, Awodey defines dependent type theories as representable natural transformations
+          of presheaves a category of contexts. <a class="cite" href="#awodey2018">[awodey2018, section 1]</a>
+        </p>
+        <ul class="refs">
+          <li id="awodey2018">
+            Steve Awodey, <a href="https://arxiv.org/abs/1406.3219"><i>Natural models of homotopy type theory</i></a>
+            <br>
+            Mathematical Structures in Computer Science (2018)
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>indexed categories and Grothendieck fibrations</h2>
+
+        <p>
+          A family of sets $(X_j)_{j \in J}$ indexed by a set $J$ can be seen in two ways:
+        </p>
+        <ul class="list">
+          <li>as a functor $A : J \to \mathbf{Set}$, which sends $j$ to $X_j$;</li>
+          <li>as a map $p : X \to J$, where $X = \coprod_{j} X_j$, so that $X_j = p^{-1}(j)$.</li>
+        </ul>
+        <p>
+          The maps $p$ are a very simple notion of fibration: each $X_j$ is the fibre above $j$. When $J$ becomes a
+          category, a lifting condition appears on $p$. It is exactly what is needed for the whole thing to behave
+          correctly, i.e. for the fibres to vary functorially along the arrows of $J$.
+          The $p$'s obtained this way are the <a class="cite" href="#disc-fib">[discrete fibrations]</a>. The relation
+          between both points of view can be
+          synthesized as:
+
+          \[
+            [J \rightarrow \mathbf{Set}] \space \cong \space DFib(J)
+          \]
+
+          where $DFib(J)$ is the structure of discrete fibrations on $J$.
+        </p>
+        <p>
+          Now, generalize the correspondence between the two points of view: take $A$ to be of the form $J \to \mathbf{Cat}$
+          instead of $J \to \mathbf{Set}$, so that each $X_j$ is now a category. One can then arrange things so that the
+          $p$'s become a generalization of discrete fibrations: these are the <a class="cite" href="#grot-fib">[Grothendieck
+          fibrations]</a>, and the passage
+          from $A$ to $p$ is the <a class="cite" href="#grot-con">[Grothendieck construction]</a>.
+        </p>
+        <ul class="refs">
+          <li id="disc-fib"><a href="https://ncatlab.org/nlab/show/discrete+fibration"><i>Discrete fibrations</i></a>, nLab</li>
+          <li id="grot-fib"><a href="https://ncatlab.org/nlab/show/Grothendieck+fibration"><i>Grothendieck fibration</i></a>, nLab</li>
+          <li id="grot-con"><a href="https://ncatlab.org/nlab/show/Grothendieck+construction"><i>Grothendieck construction</i></a>, nLab</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>categorical semantics as a lense on syntax</h2>
+
+        <p>
+          Syntactic formal systems are complex, rigid and raw objects to work with. Studying their semantics systematically
+          needs one to use other complex tools as rewriting systems ($\beta$-reduction, local graph rewriting...), partially
+          ordered sets (DCPO, domains...) but also categories ($\infty$-toposes, $\star$-autonomous categories...).
+        </p>
+        <p>
+          The latter have been used proficiently for several decades now. And I feel like categories allow one to formalize,
+          dissect and fully understand the essence of a lot of syntactical intuitive but peculiar constructions. For instance,
+          when I first learned functional programming, I understood that curryfication and nested evaluation were linked, but
+          I did not know how and why. Understanding the closure property of cartesian closed categories as models of
+          simply typed lambda-calculus allowed me to fully and precisely understand this strange link.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Copyright &copy; 2026 Alexis Pocquet. This blog is licensed under a
+      <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0 International License</a>.
+    </footer>
+  </div>
+</div>
+</body>
+</html>

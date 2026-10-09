@@ -85,10 +85,7 @@ section { margin-top: 2.5rem; scroll-margin-top: 1.5rem; }
 section:first-child { margin-top: 0; }
 
 h2 { margin: 0 0 1rem; font-size: 0.95rem; font-weight: 600; color: var(--title); text-transform: lowercase; }
-h2::before { content: "## "; font-weight: 400; color: var(--note, var(--dim)); }
-#research    { --note: var(--pink); }
-#curriculum  { --note: var(--pink); }
-#programming { --note: var(--pink); }
+h2::before { content: "## "; font-weight: 400; color: var(--pink); }
 
 /* Boxes (research, projects) */
 .entry {
@@ -158,6 +155,13 @@ details p { margin-top: 0.4rem; padding-left: 1rem; border-left: 1px solid var(-
 
 .cite { font-size: 0.95em; color: var(--dim); text-decoration: none; white-space: nowrap; }
 .cite:hover { color: var(--link); }
+
+/* Table of contents: <ol class="toc"><li><a href="#id">title</a></li></ol> */
+.toc { list-style: none; margin: 0 3rem; padding: 0.6rem 0 0.6rem 1.5rem; border-block: 1px solid var(--line); counter-reset: toc; }
+.toc li { counter-increment: toc; display: flex; gap: 1rem; padding: 0.15rem 0; }
+.toc li::before { content: counter(toc, decimal-leading-zero); color: var(--dim); }
+.toc a { color: var(--ink); text-decoration: none; }
+.toc a:hover { color: var(--link); background: none; }
 
 /* Justified text (left-aligned on phones) */
 main p, .list li { text-align: justify; hyphens: auto; }

@@ -61,10 +61,11 @@
     <main>
       <section>
         <p>
-          Below is a list of facts about the things I study. They are not
-          meant to be understood as formal results, because they might just be rigorously wrong. Though I'm
-          writing them informally, mainly because when I discovered them in the litterature or talking with others
-          for the first time, I felt like a significant part of my little world had changed.
+          Below is a list of facts about some random things. They are not
+          meant to be understood as formal results or general truths, because they might just be rigorously wrong or
+          subjective. Though I'm
+          writing them informally and intuitively, mainly because when I discovered them in the litterature, or talking with others
+          for the first time, or by myself, I felt like a significant part of my little world had changed.
         </p>
 
         <br>
@@ -90,11 +91,38 @@
         <h2>why should we laxify things ?</h2>
 
         <p>
-          Laxifying a categorical construction allows one to discover more structure on it. The stricter our
+          Laxifying a construction allows one to discover more structure on it. The stricter our
           structures, the lower the dimensions, the less information. However, laxifying implies working with
-          more complex objects, as strict equalities become cells. It is analogous to the fact that an intentional
-          type theory allowing few reductions (/strict equalities) tends to make the proofs (/the structures of cells)
-          more tedious.
+          more complex objects, as strict equalities become cells in some categories. It is analogous to the fact that an intensional
+          type theory allowing few definitional equalities (/strict equalities) tends to make the identity proofs (/the
+          structures of cells) more tedious.
+        </p>
+
+        <p>
+          An example of laxifying (weakening) is naturality of associators.
+
+          Associators are, strictly speaking, seen as equations of the form $(A \otimes B) \otimes C = A \otimes (B \otimes C)$ which
+          justify neglecting parentheses in a product. An important property of such equations is that whenever we can go from some $(A_1 \otimes B_1)
+          \otimes C_1$ to some $(A_2 \otimes B_2) \otimes C_2$ in a structure-preserving way, then we can also naturally go from
+          $A_1 \otimes (B_1 \otimes C_1)$ to some $A_2 \otimes (B_2 \otimes C_2)$ in a structure-preserving way and vice-versa.
+          The term "naturally" hides the fact that we did not need to perform any arbitrary and unavoidable choice to go from
+          the left-hand sides of both associators to their right-hand sides.
+
+          In category theory, to highlight the flexible nature of associators and to depict this notion of not performing such
+          choices, we define them using natural isomorphisms in some monoidal categories, that is,
+          invertible morphisms of the form $\alpha_{A, B, C} : (A \otimes B) \otimes C \longrightarrow A \otimes (B \otimes C)$ such
+          that the following diagram commutes.
+        </p>
+
+        <!-- https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV8xIFxcb3RpbWVzIEJfMSkgXFxvdGltZXMgQ18xIl0sWzIsMCwiQV8xIFxcb3RpbWVzIChCXzEgXFxvdGltZXMgQ18xKSJdLFswLDIsIihBXzIgXFxvdGltZXMgQl8yKSBcXG90aW1lcyBDXzIiXSxbMiwyLCJBXzIgXFxvdGltZXMgKEJfMiBcXG90aW1lcyBDXzIpIl0sWzAsMSwiXFxhbHBoYV97QV8xLCBCXzEsIENfMX0iXSxbMiwzLCJcXGFscGhhX3tBXzIsIEJfMiwgQ18yfSIsMl0sWzAsMiwiKC0gXFxvdGltZXMgLSkgXFxvdGltZXMgLSIsMl0sWzEsMywiLSBcXG90aW1lcyAoLSBcXG90aW1lcyAtKSJdXQ== -->
+        <iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwwLCIoQV8xIFxcb3RpbWVzIEJfMSkgXFxvdGltZXMgQ18xIl0sWzIsMCwiQV8xIFxcb3RpbWVzIChCXzEgXFxvdGltZXMgQ18xKSJdLFswLDIsIihBXzIgXFxvdGltZXMgQl8yKSBcXG90aW1lcyBDXzIiXSxbMiwyLCJBXzIgXFxvdGltZXMgKEJfMiBcXG90aW1lcyBDXzIpIl0sWzAsMSwiXFxhbHBoYV97QV8xLCBCXzEsIENfMX0iXSxbMiwzLCJcXGFscGhhX3tBXzIsIEJfMiwgQ18yfSIsMl0sWzAsMiwiKC0gXFxvdGltZXMgLSkgXFxvdGltZXMgLSIsMl0sWzEsMywiLSBcXG90aW1lcyAoLSBcXG90aW1lcyAtKSJdXQ==&embed" width="722" height="250" style="border-radius: 8px; border: none;"></iframe>
+      
+        <p>
+          In this way, instead of implementing naturality of associators in the meta-theory in a hidden way, it is encoded into
+          a category. We could also generalize this to any higher coherence law (naturality being a 2-dimensional coherence law)
+          saying that strict equations between objects of any dimensions can be encoded as
+          some higher-dimensional cells in some higher-categories. Hence, laxification can be seen as the starting point of a 
+          broader technique : categorification.
         </p>
       </section>
 

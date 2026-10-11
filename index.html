@@ -150,95 +150,43 @@
         </ol>
       </section>
 
-      <section id="programming">
+      <section id="coding">
         <h2>Programming projects</h2>
 
         <article class="entry">
           <h3><a href="https://github.com/DaimyoHub/MiniGoLang">MiniGoLang</a> <span class="date">2026</span></h3>
           <p class="meta">École Polytechnique, Compilation</p>
           <p>
-            A compiler for a fragment of Go, following a more disciplined approach than KawaLang — monadic error accumulation
-            across the full front-end, a typed-AST rewriting pass, and x86-64 code generation.
+            A compiler for a fragment of Go in OCaml, with monadic error accumulation and x86-64 code
+            generation.
           </p>
-          <details>
-            <summary></summary>
-            <p>
-              Unlike KawaLang, which was not not stable nor very well designed, this
-              compiler accumulates diagnostics via a
-              dedicated <code>Error</code> monadic style module and separates concerns between the
-              rewriting and emission phases. The compiler passes all provided test cases,
-              including nested struct access, forward calls, and mutually recursive functions.
-              See the <a href="https://github.com/DaimyoHub/MiniGoLang/blob/main/report.pdf">implementation report</a>
-              for details.
-            </p>
-          </details>
         </article>
 
         <article class="entry">
           <h3><a href="https://github.com/DaimyoHub/TinyProver">TinyProver</a> <span class="date">fall 2025</span></h3>
           <p class="meta">École Polytechnique, Computational Logic</p>
           <p>
-            An interactive proof assistant developed for the computational logic course
-            at École Polytechnique, implementing two independent provers in OCaml: one
-            for propositional logic via STLC, one for a minimal kernel of dependent type theory.
+            Two interactive proof assistants in OCaml for propositional logic and a higher-order logic, 
+            respectively based on STLC and a minimal MLTT.
           </p>
-          <details>
-            <summary></summary>
-            <p>
-              The STLC prover supports bidirectional type checking and an interactive
-              tactic mode with sequent manipulation. The dependent types kernel implements
-              the core of Martin-Löf type theory: substitution, parallel beta-reduction,
-              alpha-conversion, and bidirectional inference for <code>Pi</code>-types,
-              natural numbers, and propositional equality. The hardest part was
-              normalization: a naive fixpoint fails on terms defined by recursion over
-              <code>Nat</code>, requiring a more careful reduction strategy.
-            </p>
-          </details>
         </article>
 
         <article class="entry">
           <h3><a href="https://github.com/DaimyoHub/MiniRust">MiniRust</a> <span class="date">spring 2025</span></h3>
           <p class="meta">ENS Paris-Saclay, Programmation 2</p>
           <p>
-            A partial implementation of Rust's ownership discipline, developed for the
-            advanced functional programming course at ENS Paris-Saclay. The pipeline
-            runs a type checker and a borrow checker before emitting C.
+            A partial implementation of Rust's ownership discipline in OCaml. The pipeline runs a type checker and a
+            borrow checker before emitting C.
           </p>
-          <details>
-            <summary></summary>
-            <p>
-              The borrow checker handles the common cases but does not cover all edge
-              cases. On the backend, the most technically involved
-              part is struct dependency resolution: a postfix DFS over a dependency graph
-              ensures definitions are emitted in the right order, with cyclic dependencies
-              through indirection handled implicitly. 91 of 94 tests pass.
-              Here is a <a href="https://github.com/DaimyoHub/MiniRust/tree/master/tests">set of test cases</a>
-              used to validate the implementation.
-            </p>
-          </details>
         </article>
 
         <article class="entry">
           <h3><a href="https://github.com/DaimyoHub/KawaLang">KawaLang</a> <span class="date">2024</span></h3>
           <p class="meta">Université Paris-Saclay, Théorie des langages de programmation</p>
           <p>
-            A sequential interpreter for an object oriented toy language.
-            It is quite unstable but still works enough to check all the tests
-            we were meant to check. Still, the design is crap as it does not
-            distinguish between the IO of the compiler and its analysis phases,
-            and as the semantics of the language is naively thought.
+            An interpreter in OCaml for some variation of the Kawa language, an object oriented toy language.
           </p>
         </article>
-
-        <p>
-          I also enjoy some side projects:
-          <b><a href="https://github.com/DaimyoHub/c-deepseek-api">C DeepSeek API</a></b> (summer 2025),
-          an easy-to-use REST API in C for the DeepSeek API;
-          <b><a href="https://github.com/DaimyoHub/processor-proto">Processor proto</a></b> (spring 2022),
-          a C++ abstract machine interpreting a simple assembly language; and a
-          <b><a href="https://github.com/DaimyoHub/Project_0">small game</a></b> (spring 2025) developed
-          as part of the functional programming course at Université Paris-Saclay.
-        </p>
       </section>
     </main>
 
